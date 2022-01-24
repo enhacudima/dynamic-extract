@@ -58,14 +58,14 @@ php artisan dynamic-extract:delete-exported:
 
 All configuration well be place on config file at app/config/dynamic-extract.php. after modification please run 
 ````
-php artisan config:cache:
+php artisan config:cache
 ````
 - Auth
 auth:boolean 
 If is true you must implement Laravel Auth 
 
 - Permission
-middleware:array : 
+middleware:array 
 Permission list
 
 - Prefix Route
