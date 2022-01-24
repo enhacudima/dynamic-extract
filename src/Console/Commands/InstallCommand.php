@@ -52,9 +52,8 @@ class InstallCommand extends Command
         ]);
         $this->call('storage:link');
         $this->call('config:cache');
-        $this->call('dynamic-extract:tables', [
-
-        ]);
+        $this->call('dynamic-extract:tables');
+        $this->call('dynamic-extract:access');
 
         $this->info('DynamicExtract installed successfully ');
         return Command::SUCCESS;
