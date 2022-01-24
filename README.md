@@ -2,7 +2,7 @@
 
 ## About
 
-Dynamic-extract is a powerful database extract manager for PHP laravel framework with elegant view (no code at the and user). This include great features such as:
+Dynamic-extract is a powerful database extract (Excel) manager for PHP laravel framework with elegant view (no code at the and user). This include great features such as:
 
 - Powerful, Simple, fast.
 - Robust background job processing (queues).
@@ -70,7 +70,7 @@ Permission list
 
 - Prefix Route
 prefix:string 
-prefix your route name and extracted folder name
+Prefix your route name and extracted folder name
 
 - Permissions
 permissions:array 
