@@ -60,20 +60,20 @@ All configuration well be place on config file at app/config/dynamic-extract.php
 ````
 php artisan config:cache:
 ````
--Auth
-auth : boolean 
+- Auth
+auth:boolean 
 If is true you must implement Laravel Auth 
 
--Permission
-middleware : array : 
+- Permission
+middleware:array : 
 Permission list
 
--Prefix Route
-prefix : string 
+- Prefix Route
+prefix:string 
 prefix your route name and extracted folder name
 
--Permissions
-permissions : array 
+- Permissions
+permissions:array 
 Set your permissions based on your application premissions
 ## Security Vulnerabilities
 
