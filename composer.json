@@ -1,0 +1,35 @@
+{
+    "name": "enhacudima/dynamic-extract",
+    "description": "With this package it will be possible to dynamically extract data from database to excel through date ranges or dynamic filters",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Emídio Carlos Nhacudima",
+            "email": "kalibredj@outlook.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.3|^8.0",
+        "spatie/laravel-permission": "^3.17",
+        "maatwebsite/excel": "^3.1"
+    },
+    "autoload": {
+      "psr-4": {
+        "Enhacudima\\DynamicExtract\\": "src/"
+      }
+    },
+    "autoload-dev": {
+      "psr-4": {
+        "Enhacudima\\DynamicExtract\\": "src/"
+      }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Enhacudima\\DynamicExtract\\Providers\\DynamicExtractServiceProvider"
+            ]
+        }
+    }
+}
