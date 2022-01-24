@@ -68,7 +68,7 @@ permissions -> array : set your permissions based on you table permissions
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability, please send an e-mail to [nhacudimaemidio@gmail.com](mailto:nhacudimaemidio@gmail.com). All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability, please send an e-mail to [kalibredj@outlook.com](mailto:kalibredj@outlook.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
