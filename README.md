@@ -61,11 +61,20 @@ All configuration well be place on config file at app/config/dynamic-extract.php
 php artisan config:cache:
 ````
 -Auth
-auth -> boolean : If is true you must implement Laravel Auth 
-middleware -> array : permission list
-prefix -> string : prefix your route name and folder name
-permissions -> array : set your permissions based on you table permissions
+auth : boolean 
+If is true you must implement Laravel Auth 
 
+-Permission
+middleware : array : 
+Permission list
+
+-Prefix Route
+prefix : string 
+prefix your route name and extracted folder name
+
+-Permissions
+permissions : array 
+Set your permissions based on your application premissions
 ## Security Vulnerabilities
 
 If you discover a security vulnerability, please send an e-mail to [kalibredj@outlook.com](mailto:kalibredj@outlook.com). All security vulnerabilities will be promptly addressed.
