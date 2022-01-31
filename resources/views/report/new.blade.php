@@ -10,7 +10,7 @@
     <div class="row">
     @foreach($data as $report)
         @if(config('dynamic-extract.auth') ? Auth::user()->can($report->can) : true)
-        <div class="col-sm-4">
+        <div class="col-sm-4 pb-3">
             <div class="card text-white bg-dark">
                 <div class="card-body">
                     <h6 class="card-title">{{$report->name}}</h6>
