@@ -58,7 +58,7 @@ php artisan dynamic-extract:access-list
 ```` 
 - Revoke access
 ```` 
-php artisan dynamic-extract:access-revoke {email}:
+php artisan dynamic-extract:access-revoke {email}
 ```` 
 - Delete exported files
 ```` 
