@@ -59,7 +59,7 @@
                     @endforeach
                 </td>
                 <td>
-                  <a class="btn btn-success btn-sm" aria-hidden="true" href="{{url(config('dynamic-extract.prefix').'/report/config/filtro/edit',$value->id)}}" ><i class="fas fa-edit"></i> Modify</a>
+                  <a class="btn btn-success btn-sm" aria-hidden="true" href="{{url(config('dynamic-extract.prefix').'/report/config/filtro/edit',$value->id)}}" ><i class="fas fa-edit"></i> </a>
                 </td>
                 <td>{{$value->created_at}}</td>
                 <td>{{$value->updated_at->diffForHumans()}}</td>

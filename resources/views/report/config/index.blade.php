@@ -64,7 +64,7 @@
                     @if(!$value->status)
                     <a class="btn btn-danger btn-sm" aria-hidden="true" href="{{url(config('dynamic-extract.prefix').'/report/config/delete',$value->id)}}" onclick="return confirm('Are you sure you want to active this item?');" > <i class="fas fa-lock-open"></i></a>
                     @else
-                      <a class=" btn btn-success btn-sm" aria-hidden="true" href="{{url(config('dynamic-extract.prefix').'/report/config/edit',$value->id)}}" ><i class="fas fa-edit"></i> Modify</a>
+                      <a class=" btn btn-success btn-sm" aria-hidden="true" href="{{url(config('dynamic-extract.prefix').'/report/config/edit',$value->id)}}" ><i class="fas fa-edit"></i></a>
                       <a class="btn btn-danger btn-sm" aria-hidden="true" href="{{url(config('dynamic-extract.prefix').'/report/config/delete',$value->id)}}" onclick="return confirm('Are you sure you want to deactivate this item?');" ><i class="fas fa-lock"></i></a>
                     @endif
                 </td>

@@ -7,10 +7,10 @@
 @stop
 
 @section('content')
-    <div class="row">
+    <div class="row justify-content-md-center">
     @if($report)
         @if(config('dynamic-extract.auth') ? Auth::user()->can($report->can) : true)
-        <div>
+        <div class="col-md-6">
             <div class="card border-dark mb-3" >
             <div class="card-header">
                 {{$report->name}}
