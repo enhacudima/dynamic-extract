@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Cookie;
 class ConfigurationControllerReport extends Controller
 {
 
-        public function __construct()
-      {
+    public function __construct()
+    {
         $this->prefix = config('dynamic-extract.prefix').'/';
         if(config('dynamic-extract.auth')){
             $this->middleware('auth');
@@ -36,7 +36,7 @@ class ConfigurationControllerReport extends Controller
                 return $next($request);
             });
         }
-
+    }
 
   public function index()
   {
