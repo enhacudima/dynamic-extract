@@ -1,12 +1,12 @@
 <?php
 
 return [
-  'auth' => true, #when you set true it require permissions can
+  'auth' => false, #when you set true it require permissions can
   'sign_out' => '/logout',  #logout url
   #middleware permission
   'middleware' =>[
       'permission' =>[
-          'active' => true, #force use permissions
+          'active' => false, #force use permissions
       ],
       'config' => 'report-create', #all user must have this permission to make configurations
       'extract' => 'report-extract', #all user must have this permission to make extract
