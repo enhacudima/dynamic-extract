@@ -23,21 +23,22 @@ class ExtractControllerReport extends Controller
 
         public function __construct()
     {
-        $this->prefix = config('dynamic-extract.prefix');
+        $this->prefix = config('dynamic-extract.prefix').'/';
 
         $this->middleware(function ($request, $next) {
             $value = $request->cookie('access_user_token');
             $storage = Cookie::get('access_user_token');
             if(!$value or $value != $storage ){
-                return redirect($this->prefix.'/'); 
+                return redirect($this->prefix);
             }
             return $next($request);
         });
 
         if(config('dynamic-extract.auth')){
             $this->middleware('auth');
-            $this->middleware('permission:'.config('dynamic-extract.middleware.config'));
-            $this->middleware(config('dynamic-extract.middleware.config'));
+            if(config('dynamic-extract.middleware.permission.active')){
+                $this->middleware('permission:'.config('dynamic-extract.middleware.config'));
+            }
         }
     }
 

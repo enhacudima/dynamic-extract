@@ -5,12 +5,12 @@ return [
   'auth' => false,
   #middleware permission
   'middleware' =>[
-      'config' => 'config', #all user must have this permission to make configurations
-      'extract' => 'extract', #all user must have this permission to make extract
-      'view_all'=> 'view_all', #all user must have this permission to access all extracted file
       'permission' =>[
-          'table' => 'permission', #table of permissions 
-      ]
+          'active' => true, #force use permissions
+      ],
+      'config' => 'report-create', #all user must have this permission to make configurations
+      'extract' => 'report-extract', #all user must have this permission to make extract
+      'view_all'=> 'view_all' #all user must have this permission to access all extracted file
   ],
   #make it true if you plan to use queue process
   'queue' => false,
