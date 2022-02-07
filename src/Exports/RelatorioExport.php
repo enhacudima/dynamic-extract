@@ -26,19 +26,21 @@ class RelatorioExport implements FromQuery, ShouldAutoSize, WithHeadings, WithEv
     public function __construct($filename,$start,$end,$type,$filtro,$request)
     {
         RelatorioExport::$filename = $filename;
-        $q = new ExportQueryController($start,$end,$type,$filtro,$request);
-        $this->eq=$q->query();
+        $this->q = new ExportQueryController($start,$end,$type,$filtro,$request);
     }
     public function headings(): array
     {
-        return $this->eq['heading'];
+        $eq=$this->q;
+        $eq = $eq->query();
+        return $eq['heading'];
     }
 
     public function query()
     {
-        return $this->eq['data'];
+        $eq=$this->q;
+        $eq = $eq->query();
+        return $eq['data'];
     }
-
 
     public static function afterSheet(AfterSheet $event)
     {

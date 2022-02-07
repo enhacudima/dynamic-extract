@@ -24,6 +24,10 @@ class NotifyUserOfCompletedExport implements ShouldQueue
 
     public function handle()
     {
+        ProcessedFiles::where('filename',$this->filename)
+        ->update([
+            'status' => 0,
+        ]);
         $this->user->notify(new ExportReady($this->filename));
     }
 }
