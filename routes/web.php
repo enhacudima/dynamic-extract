@@ -28,10 +28,8 @@ Route::middleware(['web'])->prefix(config('dynamic-extract.prefix'))->group(func
         Route::post('/report/filtro/table','view_filtro');
         Route::get('report/config/open/{id}/{type}','open_report_extract');
     });
-    Route::resources([
-        'meusficheiros' => ExtractControllerReport::class,
-    ]);
-    Route::get('file/download/{filename}', [FileDownloadController::class, 'index'])->name('file/download');
+
+    Route::get('file/download/{filename}', [FileDownloadController::class, 'index']);
     Route::controller(ConfigurationControllerReport::class)->group(function () {
         Route::get('report/config//delete/{id}','delete_report');
         Route::get('report/config/filtro/delete/{id}','delete_group_filter');
