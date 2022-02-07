@@ -6,9 +6,11 @@
 @stop
 
 @section('content')
-    @if( Cookie::get('access_user_token'))
-    <center> Let's start!!</center>
+    @auth
+        <center> Let's start!!</center>
+    @elseif( Cookie::get('access_user_token'))
+        <center> Let's start!!</center>
     @else
-    <center> You must start a session ...</center>
+        <center> You must start a session ... </center>
     @endauth
 @stop

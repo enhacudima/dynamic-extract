@@ -1,8 +1,8 @@
 <?php
 
 return [
-  #when you set true it require permissions can
-  'auth' => false,
+  'auth' => true, #when you set true it require permissions can
+  'sign_out' => '/logout',  #logout url
   #middleware permission
   'middleware' =>[
       'permission' =>[

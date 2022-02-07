@@ -24,10 +24,16 @@
             <li class="nav-item">
                 <a   class="nav-link text-muted" href="https://github.com/enhacudima" target="_blank"><i class="fab fa-github"></i></a>
             </li>
-            @if(Cookie::get('access_user_token'))
-            <li class="nav-item">
-                <a   class="nav-link text-muted" href="{{url(config('dynamic-extract.prefix').'/sign-out')}}" ><i class="fas fa-sign-out-alt"></i></a>
-            </li>
+            @if(config('dynamic-extract.auth'))
+                <li class="nav-item">
+                    <a   class="nav-link text-muted" href="{{url(config('dynamic-extract.sign_out'))}}" ><i class="fas fa-sign-out-alt"></i></a>
+                </li>
+            @else
+                @if(Cookie::get('access_user_token'))
+                <li class="nav-item">
+                    <a   class="nav-link text-muted" href="{{url(config('dynamic-extract.prefix').'/sign-out')}}" ><i class="fas fa-sign-out-alt"></i></a>
+                </li>
+                @endif
             @endif
         </ul>
   </div>

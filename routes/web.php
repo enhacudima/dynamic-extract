@@ -7,11 +7,6 @@ use Enhacudima\DynamicExtract\Http\Controllers\AuthController;
 
 use Illuminate\Support\Facades\Route;
 
-
-Route::get(config('dynamic-extract.prefix'), function() {
-    return  view('extract-view::welcome');
-});
-
 Route::middleware(['web'])->prefix(config('dynamic-extract.prefix'))->group(function () {
 
     Route::controller(AuthController::class)->group(function () {
@@ -20,6 +15,7 @@ Route::middleware(['web'])->prefix(config('dynamic-extract.prefix'))->group(func
     });
 
     Route::controller(ExtractControllerReport::class)->group(function () {
+        Route::get('/', 'welcome');
         Route::get('/report/index', 'index');
         Route::get('/report/new', 'new');
         Route::get('/meusficheiros/deletefile/{filename}', 'deletefile');
