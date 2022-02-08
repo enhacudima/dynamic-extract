@@ -8,8 +8,8 @@ return [
       'permission' =>[
           'active' => false, #force use permissions
       ],
-      'config' => 'report-create', #all user must have this permission to make configurations
-      'extract' => 'report-extract', #all user must have this permission to make extract
+      'config' => 'config', #all user must have this permission to make configurations
+      'extract' => 'extract', #all user must have this permission to make extract
       'view_all'=> 'view_all' #all user must have this permission to access all extracted file
   ],
   #make it true if you plan to use queue process
@@ -46,7 +46,7 @@ return [
                         ]
             ]
     ],
-  #set list for drop down filter
+  #set columuns can be selected filter
   'columuns' =>[
       'group_1'=>[
             'group_name'=>'Group-1',
