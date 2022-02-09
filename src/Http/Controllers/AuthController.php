@@ -18,6 +18,10 @@ class AuthController extends Controller
         $this->prefix = config('dynamic-extract.prefix');
     }
 
+    public function welcome()
+    {
+        return  view('extract-view::welcome');
+    }
     public function signIn(Request $request, $user)
     {
         // Check if the URL is valid

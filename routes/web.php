@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['web'])->prefix(config('dynamic-extract.prefix'))->group(function () {
 
     Route::controller(AuthController::class)->group(function () {
+        Route::get('/', 'welcome');
         Route::get('/sign-in/{user}', 'signIn')->name(config('dynamic-extract.prefix').'/sign-in');
         Route::get('/sign-out', 'logout')->name(config('dynamic-extract.prefix').'/sign-out');
     });
 
     Route::controller(ExtractControllerReport::class)->group(function () {
-        Route::get('/', 'welcome');
         Route::get('/report/index', 'index');
         Route::get('/report/new', 'new');
         Route::get('/meusficheiros/deletefile/{filename}', 'deletefile');
