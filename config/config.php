@@ -23,12 +23,6 @@ return [
   'prefix' => 'dynamic-extract',
   #set intervaler time of refresh table view of processed file in min milliseconds
   'interval' => 30000,
-  #set your permissions based on you table permissions
-  'permissions'=>[
-    'report-1',
-    'report-2',
-    'report-3',
-  ],
   #set list for drop down filter
   'lists' =>[
       'group_1'=>[

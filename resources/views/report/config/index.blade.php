@@ -97,24 +97,9 @@
 
                 <input type="text" name="name" required autofocus="" class="form-control" placeholder="Name"><br>
                 <input type="text" name="comments" required autofocus="" class="form-control" placeholder="Comments"><br>
-                <select name="can" required="" autofocus="" class="form-control">
-                  <option value="" disabled="" selected="">Select permissions..</option>
-                  @if(config('dynamic-extract.permissions'))
-                    @foreach(config('dynamic-extract.permissions') as $permission)
-                        @if(config('dynamic-extract.auth'))
-                            @if(Auth::user()->can($permission))
-                            <option value="{{$permission}}">{{$permission}}</option>
-                            @else
-                            <option value="{{$permission}}">{{$permission}}</option>
-                            @endif
-                        @else
-                            <option value="{{$permission}}">{{$permission}}</option>
-                        @endif
-                    @endforeach
-                  @endif
-                </select><br>
+                <input type="text" name="can" required autofocus="" class="form-control" placeholder="Permissions"><br>
                 <select name="filtro" class="form-control">
-                  <option value="" disabled="" selected="">Select filter..</option>
+                  <option value="" disabled="" selected="">Select Group filter..</option>
                   @foreach($filtros as $filtro)
                   <option value="{{$filtro->id}}">{{$filtro->name}}</option>
                   @endforeach
