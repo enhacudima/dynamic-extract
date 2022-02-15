@@ -130,13 +130,11 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable( {
-        dom: 'Bfrtip',
-        "order": [[ 0, "desc" ]],
-        "aLengthMenu": [[25, 50, 75, -1], [25, 50, 75, "All"]],
-        "columnDefs": [
-                        { "type": "date-eu", "targets": 4 }
-                      ],
-                      buttons: [
+            dom: 'Blfrtip',
+            "aLengthMenu": [[25, 50, 75,,100,250,500, -1], [25, 50, 75,100,250,500, "All"]],
+            "iDisplayLength": 25,
+            "order": [[0, "desc"]],
+            buttons: [
             {
               extend: 'copy',
               text: '<i class="fas fa-copy"></i>',

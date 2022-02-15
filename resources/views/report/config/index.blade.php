@@ -97,7 +97,7 @@
 
                 <input type="text" name="name" required autofocus="" class="form-control" placeholder="Name"><br>
                 <input type="text" name="comments" required autofocus="" class="form-control" placeholder="Comments"><br>
-                <input type="text" name="can" required autofocus="" class="form-control" placeholder="Permissions"><br>
+                <input type="text" name="can" required autofocus="" class="form-control" placeholder="Type a permission"><br>
                 <select name="filtro" class="form-control">
                   <option value="" disabled="" selected="">Select Group filter..</option>
                   @foreach($filtros as $filtro)
@@ -138,13 +138,11 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable( {
-        dom: 'Bfrtip',
-        "order": [[ 0, "desc" ]],
-        "aLengthMenu": [[25, 50, 75, -1], [25, 50, 75, "All"]],
-        "columnDefs": [
-                        { "type": "date-eu", "targets": 4 }
-                      ],
-                      buttons: [
+            dom: 'Blfrtip',
+            "aLengthMenu": [[25, 50, 75,,100,250,500, -1], [25, 50, 75,100,250,500, "All"]],
+            "iDisplayLength": 25,
+            "order": [[0, "desc"]],
+                    buttons: [
             {
               extend: 'copy',
               text: '<i class="fas fa-copy"></i>',

@@ -44,10 +44,6 @@ class ExtractControllerReport extends Controller
 
     }
 
-  public function welcome()
-  {
-      return  view('extract-view::welcome');
-  }
 
   public function index()
   {
@@ -83,7 +79,7 @@ class ExtractControllerReport extends Controller
 
     public function new ()
     {
-        $data=ReportNew::where('status',1)->orderby('name','asc')->get();
+        $data=ReportNew::where('status',1)->orderby('name','asc')->paginate(18);
         return view('extract-view::report.new', compact('data'));
     }
 

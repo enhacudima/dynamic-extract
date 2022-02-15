@@ -24,6 +24,7 @@
         </div>
         @endif
     @endforeach
+    {{ $data->links() }}
     </div>
 
 @stop

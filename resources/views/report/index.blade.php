@@ -91,12 +91,9 @@
 $(document).ready(function() {
     $('#example').DataTable( {
         dom: 'Blfrtip',
-        "order": [[ 0, "desc" ]],
-        "aLengthMenu": [[25, 50, 75, -1], [25, 50, 75, "All"]],
+        "aLengthMenu": [[25, 50, 75,,100,250,500, -1], [25, 50, 75,100,250,500, "All"]],
         "iDisplayLength": 25,
-        "columnDefs": [
-                        { "type": "date-eu", "targets": 4 }
-                      ],
+        "order": [[0, "desc"]],
         buttons: [
             {
               extend: 'copy',
