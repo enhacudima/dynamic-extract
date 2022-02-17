@@ -14,6 +14,6 @@ class FileDownloadController extends Controller
     	$data=ProcessedFiles::where('filename',$filename)->first();
 
         $file = $data->path.$filename;
-        return Storage::download($file);
+        return Storage::download('public/'.$file);
     }
 }

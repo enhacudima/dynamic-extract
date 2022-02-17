@@ -130,8 +130,7 @@ class ExtractControllerReport extends Controller
         $heading = $eq['heading'];
         $data = $eq['data'];
         $data=$data->take(500)->get();
-        #dd($data);
-        return view('extract-view::report.tableRows',compact('heading','data'))->with('warning','Max 500 rows');
+        return view('extract-view::report.tableRows',compact('heading','data'));
 
     }
     public function filtro(Request $request)
@@ -158,7 +157,7 @@ class ExtractControllerReport extends Controller
         $filename=$new_str.'_'.time().'.xlsx';
         $filterData = $request->except(['_token','can','report_id']);
 
-        $path = config('dynamic-extract.prefix').'/'.$filename;
+        $path = 'public/'.config('dynamic-extract.prefix').'/'.$filename;
         $data=[];
         $data['filename']=$filename;
         $data['path']=config('dynamic-extract.prefix').'/';
