@@ -41,7 +41,7 @@ class InstallCommand extends Command
     {
         if ($this->confirm('Its always good to run Migration on first install, Do you wish to continue?')) {
             $this->call('migrate', [
-                '--path' => '/vendor/enhacudima/dynamic-extract/src/Database/Migration'
+                '--path' => '/vendor/enhacudima/dynamic-extract/src/DataBase/Migration'
             ]);
         }
         $this->call('vendor:publish', [

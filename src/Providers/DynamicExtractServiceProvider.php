@@ -11,6 +11,7 @@ use Enhacudima\DynamicExtract\Console\Commands\AccessRevokeCommand;
 use Enhacudima\DynamicExtract\Console\Commands\AccessListCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Schema;
 class DynamicExtractServiceProvider extends ServiceProvider
 {
     /**
@@ -56,6 +57,7 @@ class DynamicExtractServiceProvider extends ServiceProvider
             ]);
         }
         Paginator::useBootstrap();
+        Schema::defaultStringLength(191);
     }
 
     /**
