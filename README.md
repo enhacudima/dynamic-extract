@@ -69,7 +69,7 @@ php artisan dynamic-extract:delete-exported
 You don't need to run the commands on first installation
 - Migration
 ```` 
-php artisan migrate --path=/packages/enhacudima/dynamic-extract/src/Database/Migration
+php artisan migrate --path=/vendor/enhacudima/dynamic-extract/src/Database/Migration
 ```` 
 - Config
 ````
