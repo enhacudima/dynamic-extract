@@ -104,7 +104,7 @@ class ConfigurationControllerReport extends Controller
   }
   function validate_report($request){
     $table=ReportNewTables::find($request->table_name);
-    $head=DB::table($table->table_name)->first();
+    $head=DB::connection(config('dynamic-extract.db_connection'))->table($table->table_name)->first();
     $arrrayData=collect($head)->toArray();
     $heading=array_keys($arrrayData);
     $tamanho=sizeof($heading);
@@ -126,7 +126,7 @@ class ConfigurationControllerReport extends Controller
         return $msg;
       }
       if ($filtro_toV->type=="date") {
-        $columun_type=DB::getSchemaBuilder()->getColumnType($table->table_name, $filtro_toV->value);
+        $columun_type=DB::connection(config('dynamic-extract.db_connection'))->getSchemaBuilder()->getColumnType($table->table_name, $filtro_toV->value);
           if ($columun_type!="datetime") {
             $msg='Filter: '.$filtro_toV->name.', Columun: '.$filtro_toV->value.' is not DateTime and is not compatible with Table: '.$table->name;
             return $msg;

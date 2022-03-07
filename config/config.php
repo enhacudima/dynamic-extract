@@ -12,6 +12,8 @@ return [
       'extract' => 'extract', #all user must have this permission to make extract
       'view_all'=> 'view_all' #all user must have this permission to access all extracted file
   ],
+  #extract database connection
+  'db_connection' => "mysql",
   #make it true if you plan to use queue process
   'queue' => false,
   #when you set queue true you have a chance to set you email

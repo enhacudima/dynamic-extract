@@ -42,7 +42,7 @@ class InstallTables extends Command
     {
         $this->info('Are you about insert new table to DynamicExtract');
         $table_name = $this->ask('What is your table name?');
-        $check_table = Schema::hasTable($table_name);
+        $check_table = Schema::connection(config('dynamic-extract.db_connection'))->hasTable($table_name);
         if(!$check_table){
             $this->error("Could not find any related tables");
             $table_name = $this->ask('What is table name?');
