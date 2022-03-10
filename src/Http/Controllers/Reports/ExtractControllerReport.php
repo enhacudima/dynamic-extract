@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Cookie;
 class ExtractControllerReport extends Controller
 {
 
+
         public function __construct()
     {
         $this->prefix = config('dynamic-extract.prefix');
@@ -129,7 +130,7 @@ class ExtractControllerReport extends Controller
         $eq=$q->query();
         $heading = $eq['heading'];
         $data = $eq['data'];
-        $data=$data->take(500)->get();
+        $data=$data->take(config('dynamic-extract.preview_limit'))->get();
         return view('extract-view::report.tableRows',compact('heading','data'));
 
     }

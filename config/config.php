@@ -14,6 +14,8 @@ return [
   ],
   #extract database connection
   'db_connection' => "mysql",
+   #epreview data limit
+  'preview_limit' => "5000",
   #make it true if you plan to use queue process
   'queue' => false,
   #when you set queue true you have a chance to set you email

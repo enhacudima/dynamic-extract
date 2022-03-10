@@ -33,15 +33,15 @@ class ExportQueryController extends Controller
         $data=new ProcessedFiles;
             if ($this->filtro=='no_filter') {
                 try{
-                $data=DB::connection(config('dynamic-extract.db_connection'))->table($this->type)->orderby($this->heading[0] ?? 'id');
+                $data=DB::connection(config('dynamic-extract.db_connection'))->table($this->type)->orderby($this->heading[0] ?? 'id', 'desc');
                 } catch (Throwable $e) {
                     return back()->with('error','Error: '.$e->getMessage());
                 }
             }else{
             try{
-                $data=DB::connection(config('dynamic-extract.db_connection'))->table($this->type)->orderby($this->heading[0] ?? 'id');
+                $data=DB::connection(config('dynamic-extract.db_connection'))->table($this->type)->orderby($this->heading[0] ?? 'id', 'desc');
                 if($this->filtro){
-                    $data->whereBetween($this->filtro,[$this->start,$this->end])->orderBy($this->filtro,'asc');
+                    $data->whereBetween($this->filtro,[$this->start,$this->end])->orderBy($this->filtro,'desc');
                 }
 
                 $this->filter_string($data,$this->request);
