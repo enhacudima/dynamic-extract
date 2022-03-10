@@ -23,7 +23,7 @@
         <tr>
             @if(isset($heading))
             @foreach($heading as $col)
-            <th scope="col"><center> {{$col}}</center></th>
+            <th scope="col"><center> {{strtoupper(str_replace('_',' ',$col))}}</center></th>
             @endforeach
             @endif
         </tr>

@@ -114,13 +114,13 @@ class ExtractControllerReport extends Controller
               $request->validate([
                   'start'=>'required|date',
               ]);
-              $start=Carbon::parse($request->start);
+            $start=Carbon::parse($request->start)->startOfDay();
         }
         if (isset($request->end)) {
               $request->validate([
                   'end'=>'required|date'
               ]);
-          $end=Carbon::parse($request->end)->endOfDay();
+            $end=Carbon::parse($request->end)->endOfDay();
         }
 
           $type=$request->type;
