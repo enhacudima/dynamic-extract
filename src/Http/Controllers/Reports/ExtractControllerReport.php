@@ -30,7 +30,7 @@ class ExtractControllerReport extends Controller
             $this->middleware('auth');
             if(config('dynamic-extract.middleware.permission.active')){
                 //$this->middleware('permission:'.config('dynamic-extract.middleware.extract'));
-                $this->authorize(config('dynamic-extract.middleware.extract'));
+                $this->middleware('can:'.config('dynamic-extract.middleware.extract'));
             }
         }else{
             $this->middleware(function ($request, $next) {
