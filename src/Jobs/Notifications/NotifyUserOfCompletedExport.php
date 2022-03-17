@@ -1,7 +1,6 @@
 <?php
 namespace Enhacudima\DynamicExtract\Jobs\Notifications;
 
-use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
@@ -16,7 +15,7 @@ class NotifyUserOfCompletedExport implements ShouldQueue
     public $user;
     public $filename;
 
-    public function __construct(User $user = null,$filename)
+    public function __construct($user = null,$filename)
     {
         $this->user = $user;
         $this->filename=$filename;
