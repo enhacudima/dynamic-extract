@@ -5,7 +5,7 @@ namespace Enhacudima\DynamicExtract\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Response;
-use Enhacudima\DynamicExtract\DataBase\Model\User;
+use Enhacudima\DynamicExtract\DataBase\Model\Access;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cookie;
@@ -30,7 +30,7 @@ class AuthController extends Controller
         }
 
         // Authenticate the user
-        $user = User::findOrFail($request->user);
+        $user = Access::findOrFail($request->user);
         if($user){
             $token = (string) Str::uuid();
             $minutes = 120;

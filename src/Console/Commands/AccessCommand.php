@@ -3,7 +3,7 @@
 namespace Enhacudima\DynamicExtract\Console\Commands;
 
 use Illuminate\Console\Command;
-use Enhacudima\DynamicExtract\DataBase\Model\User;
+use Enhacudima\DynamicExtract\DataBase\Model\Access;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -71,9 +71,9 @@ class AccessCommand extends Command
                 $this->error($value);
             }
         }elseif ($this->confirm('Do you wish to give access to '.$email.'?')) {
-            
+
             $expire_at = now()->addDays($time);
-            $user = User::updateOrCreate(
+            $user = Access::updateOrCreate(
                 ['email' => $email],
                 ['name' => $name, 'expire_at' => $expire_at, 'password' => Hash::make(Str::random())]
             );
@@ -84,7 +84,7 @@ class AccessCommand extends Command
                 ['user' => $user->id]
             );
 
-            User::where('id',$user->id)
+            Access::where('id',$user->id)
                 ->update(['access_link' =>$url]);
 
 

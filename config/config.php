@@ -21,7 +21,7 @@ return [
   #when you set queue true you have a chance to set you email
    'email' =>[
        'from' => 'noreply@dynamicexport.com',
-       'name' => 'Dynamic Form'
+       'name' => 'Dynamic Extract'
    ],
   #prefix your route name and folder name
   'prefix' => 'dynamic-extract',
