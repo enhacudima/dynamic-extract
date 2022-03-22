@@ -5,6 +5,7 @@ return [
   'sign_out' => '/logout',  #logout url
   #middleware permission
   'middleware' =>[
+      'model' => App\User::class,
       'permission' =>[
           'active' => false, #force use permissions
       ],
