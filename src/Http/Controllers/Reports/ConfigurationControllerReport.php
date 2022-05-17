@@ -209,7 +209,10 @@ class ConfigurationControllerReport extends Controller
          	'name'=>$request->name,
          	'user_id'=>$request->user_id
          ]);
-
+         if(!$request->filtros ){
+             $group->delete();
+  	        return back()->with('error','You cannot added group filter on the list without filter.');
+         }
          foreach ($request->filtros as $key => $value) {
          	ReportNewSyncFiltro::create([
          		'filtro'=>$value,
