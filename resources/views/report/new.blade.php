@@ -16,7 +16,7 @@
                     <h6 class="card-title">{{$report->name}}</h6>
                     <p class="card-text"><small>{{$report->comments}}.</small></p>
                     <div class="text-end">
-                        <a href="{{url(config('dynamic-extract.prefix').'/report/config/open',[$report->id,'table'])}}" class="btn btn-primary btn-sm"><i class="fas fa-table"></i></a>
+                        <a href="{{url(config('dynamic-extract.prefix').'/report/config/open',[$report->id,'table'])}}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                         <a href="{{url(config('dynamic-extract.prefix').'/report/config/open',[$report->id,'excel'])}}" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i></a>
                     </div>
                 </div>

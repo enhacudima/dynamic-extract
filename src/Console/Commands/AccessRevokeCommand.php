@@ -3,7 +3,7 @@
 namespace Enhacudima\DynamicExtract\Console\Commands;
 
 use Illuminate\Console\Command;
-use Enhacudima\DynamicExtract\DataBase\Model\User;
+use Enhacudima\DynamicExtract\DataBase\Model\Access;
 
 class AccessRevokeCommand extends Command
 {
@@ -40,14 +40,14 @@ class AccessRevokeCommand extends Command
     public function handle()
     {
         $user = $this->argument('user');
-        
-        $check = User::where('email',$user)->first();
-        
+
+        $check = Access::where('email',$user)->first();
+
         if(!$check){
             $this->error("Could not find any related access");
             $email = $this->ask('What is revoke email?');
         }elseif ($this->confirm('Do you wish to revoke access to '.$user.'?')) {
-            User::where('email',$user)->delete();
+            Access::where('email',$user)->delete();
             $this->info('Revoked link access: '. $user);
         }
         return Command::SUCCESS;

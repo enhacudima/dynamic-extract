@@ -17,6 +17,8 @@ return [
   'db_connection' => "mysql",
    #epreview data limit
   'preview_limit' => "5000",
+  #set intervaler time of refresh table view of processed file in min milliseconds
+  'interval' => 30000,
   #make it true if you plan to use queue process
   'queue' => false,
   #when you set queue true you have a chance to set you email
@@ -26,8 +28,6 @@ return [
    ],
   #prefix your route name and folder name
   'prefix' => 'dynamic-extract',
-  #set intervaler time of refresh table view of processed file in min milliseconds
-  'interval' => 30000,
   #set list for drop down filter
   'lists' =>[
       'group_1'=>[
@@ -50,15 +50,15 @@ return [
       'group_1'=>[
             'group_name'=>'Group-1',
             'options'=>[
-                        'name',
-                        'email',
+                        'option-1',
+                        'option-2',
                         ]
             ],
       'group_2'=>[
             'group_name'=>'Group-2',
             'options'=>[
-                        'email_verified_at',
-                        'created_at',
+                        'option-3',
+                        'option-4',
                         ]
             ]
     ]

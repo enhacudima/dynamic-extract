@@ -3,7 +3,7 @@
 namespace Enhacudima\DynamicExtract\Console\Commands;
 
 use Illuminate\Console\Command;
-use Enhacudima\DynamicExtract\DataBase\Model\User;
+use Enhacudima\DynamicExtract\DataBase\Model\Access;
 
 class AccessListCommand extends Command
 {
@@ -43,7 +43,7 @@ class AccessListCommand extends Command
 
         $this->table(
             ['Code', 'Table name', 'Email', 'Updated','Expire','Access'],
-            User::all(['id', 'name','email', 'updated_at','expire_at', 'access_link'])->toArray()
+            Access::all(['id', 'name','email', 'updated_at','expire_at', 'access_link'])->toArray()
         );
         return Command::SUCCESS;
     }
