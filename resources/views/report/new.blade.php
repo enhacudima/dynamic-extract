@@ -25,7 +25,9 @@
                     </div>
                 @endif
             @endforeach
-        {{ $data_favorite->links() }}
+            <div class="row">
+                {{ $data_favorite->links() }}
+            </div>
 
         @else
             <center> No favorite report!!</center>
@@ -53,7 +55,10 @@
         </div>
         @endif
     @endforeach
-    {{ $data->links() }}
+
+        <div class="row">
+            {{ $data->links() }}
+        </div>
     </div>
 
 @stop
