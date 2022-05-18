@@ -30,7 +30,7 @@ class ExtractControllerReport extends Controller
 
         if(config('dynamic-extract.auth')){
             $this->middleware('auth');
-            $this->user_id = Auth::id();
+            $this->user_id = Auth::user()->id;
             $this->user_model = config('dynamic-extract.middleware.model');
 
             if(config('dynamic-extract.middleware.permission.active')){
@@ -98,7 +98,7 @@ class ExtractControllerReport extends Controller
             }])
             ->where('status',1)->orderby('name','asc')->orderby('name')->paginate(8);
 
-        $data_favorite=ReportFavorites::with('report')->orderby('updated_at','desc')->where('user_id',$this->user_id)->paginate(24);
+        $data_favorite=ReportFavorites::with('report')->orderby('updated_at','desc')->where('user_id',$this->user_id)->paginate(12);
         return view('extract-view::report.new', compact('data','data_favorite'));
     }
 
@@ -230,7 +230,7 @@ class ExtractControllerReport extends Controller
 
   public function favorite_remove($id)
   {
-    ReportFavorites::where('id',$id)->delete();
+    ReportFavorites::where('report_id',$id)->delete();
     return back()->with('success',"Removed from favorites");
 
   }
