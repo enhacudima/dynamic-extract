@@ -110,7 +110,9 @@ class ExtractControllerReport extends Controller
 
     public function view_filtro(Request $request){
         $end=date('Y-m-d');
+        $end=Carbon::parse($end)->endOfDay();
         $start=date('Y-m-01');
+        $end=Carbon::parse($start)->startOfDay();
 
         if (isset($request->start)) {
               $request->validate([
