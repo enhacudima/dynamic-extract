@@ -30,12 +30,12 @@ class ExtractControllerReport extends Controller
 
         if(config('dynamic-extract.auth')){
             $this->middleware('auth');
-            $this->user_id = Auth::user()->id;
-            $this->user_model = config('dynamic-extract.middleware.model');
 
             if(config('dynamic-extract.middleware.permission.active')){
                 $this->middleware('can:'.config('dynamic-extract.middleware.extract'));
             }
+            $this->user_id = Auth::user()->id;
+            $this->user_model = config('dynamic-extract.middleware.model');
 
         }else{
             $this->middleware(function ($request, $next) {
