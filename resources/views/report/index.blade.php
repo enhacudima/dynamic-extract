@@ -46,7 +46,7 @@
                     <td>
                         @if(isset($value->filterData))
                             @foreach($value->filterData as $key => $items )
-                                <span class="badge bg-info"> <div class="text-uppercase">{{$key}}:</div>
+                                <span class="badge  badge-info"> <div class="text-uppercase">{{$key}}:</div>
                                 @if(is_array($items))
                                     @foreach($items as $keyItem =>$item)
                                         {!! $item !!},

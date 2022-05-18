@@ -4,6 +4,7 @@ namespace Enhacudima\DynamicExtract\DataBase\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use App\ReportNewFiltro;
+use Enhacudima\DynamicExtract\DataBase\Model\ReportFavorites;
 
 class ReportNew extends Model
 {
@@ -20,6 +21,11 @@ class ReportNew extends Model
     {
         return $this->hasMany(ReportNewSyncFiltro::class,'groupo_filtro','filtro');
     }
+        public function favorite()
+    {
+        return $this->belongsTo(ReportFavorites::class,'id', 'report_id');
+    }
+
 
         public function table()
     {

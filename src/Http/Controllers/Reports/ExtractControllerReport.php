@@ -9,6 +9,7 @@ use Enhacudima\DynamicExtract\DataBase\Model\ProcessedFiles;
 use Enhacudima\DynamicExtract\Jobs\Notifications\NotifyUserOfCompletedExport;
 use Enhacudima\DynamicExtract\Exports\RelatorioExport;
 use Enhacudima\DynamicExtract\DataBase\Model\ReportNew;
+use Enhacudima\DynamicExtract\DataBase\Model\ReportFavorites;
 use DB;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
@@ -21,17 +22,21 @@ use Illuminate\Support\Facades\Cookie;
 class ExtractControllerReport extends Controller
 {
 
-
+    public $user_id;
+    public $user_model;
         public function __construct()
     {
         $this->prefix = config('dynamic-extract.prefix');
 
         if(config('dynamic-extract.auth')){
             $this->middleware('auth');
+            $this->user_id = Auth::id();
+            $this->user_model = config('dynamic-extract.middleware.model');
+
             if(config('dynamic-extract.middleware.permission.active')){
-                //$this->middleware('permission:'.config('dynamic-extract.middleware.extract'));
                 $this->middleware('can:'.config('dynamic-extract.middleware.extract'));
             }
+
         }else{
             $this->middleware(function ($request, $next) {
                 $value = $request->cookie('access_user_token');
@@ -39,6 +44,11 @@ class ExtractControllerReport extends Controller
                 if(!$value or $value != $storage ){
                     return redirect($this->prefix.'/');
                 }
+                $user = Cookie::get('access_user');
+                $user = json_decode($user);
+                $this->user_id = $user->id;
+                $this->user_model = Enhacudima\DynamicExtract\DataBase\Model\Access::class;
+
                 return $next($request);
             });
         }
@@ -81,8 +91,15 @@ class ExtractControllerReport extends Controller
 
     public function new ()
     {
-        $data=ReportNew::where('status',1)->orderby('name','asc')->paginate(18);
-        return view('extract-view::report.new', compact('data'));
+        $data=ReportNew::with(['favorite' => function($query)
+            {
+                $query->where('report_new_favorites.user_id', $this->user_id);
+
+            }])
+            ->where('status',1)->orderby('name','asc')->orderby('name')->paginate(8);
+
+        $data_favorite=ReportFavorites::with('report')->orderby('updated_at','desc')->where('user_id',$this->user_id)->paginate(24);
+        return view('extract-view::report.new', compact('data','data_favorite'));
     }
 
 
@@ -197,6 +214,26 @@ class ExtractControllerReport extends Controller
         return Redirect(url($this->prefix.'/report/index'))->withSuccess('Export starting..');
 
     }
+
+
+  public function favorite($id)
+  {
+    $report=ReportNew::where('id',$id)->where('status',1)->first();
+    if(!isset($report)){
+        return back()->with('error','This report is no longer available');
+    }
+
+    ReportFavorites::Favorite($this->user_id, $this->user_model, $id);
+    return back()->with('success',"{$report->name} added to favorites");
+
+  }
+
+  public function favorite_remove($id)
+  {
+    ReportFavorites::where('id',$id)->delete();
+    return back()->with('success',"Removed from favorites");
+
+  }
 
 
 

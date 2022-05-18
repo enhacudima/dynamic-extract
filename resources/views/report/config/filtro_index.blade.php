@@ -55,7 +55,7 @@
                 <td>{{$value->name}}</td>
                 <td>
                     @foreach($value->sync_filtros as $filtro)
-                        <span class="badge bg-primary">{{$filtro->filtros->name}}</span>
+                        <span class="badge  badge-info">{{$filtro->filtros->name}}</span>
                     @endforeach
                 </td>
                 <td>
@@ -82,7 +82,9 @@
       <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Create New Group Filter</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
         </div>
           <form method="post" id="list" action="{{url(config('dynamic-extract.prefix').'/report/config/filtro/store')}}">
           @csrf

@@ -23,6 +23,8 @@ Route::middleware(['web'])->prefix(config('dynamic-extract.prefix'))->group(func
         Route::post('/report/filtro', 'filtro');
         Route::post('/report/filtro/table','view_filtro');
         Route::get('report/config/open/{id}/{type}','open_report_extract');
+        Route::get('/report/config/favorite/{id}', 'favorite');
+        Route::get('/report/config/favorite/remove/{id}', 'favorite_remove');
     });
 
     Route::get('file/download/{filename}', [FileDownloadController::class, 'index'])->name(config('dynamic-extract.prefix').'/file/download');

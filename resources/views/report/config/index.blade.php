@@ -57,7 +57,7 @@
                 <td>{{$value->table->name}}</td>
                 <td>
                 @if(isset($value->filtro))
-                  <span class="badge bg-primary">{{$value->filtro_r->name}}</span>
+                  <span class="badge  badge-info">{{$value->filtro_r->name}}</span>
                 @endif
                 </td>
                 <td>
@@ -88,7 +88,9 @@
       <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Create New Report</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
         </div>
           <form method="post" id="list" action="{{url(config('dynamic-extract.prefix').'/report/config/store/new')}}">
           @csrf

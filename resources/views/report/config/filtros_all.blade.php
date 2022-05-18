@@ -63,7 +63,7 @@
                 </td>
                 <td>
                     @foreach($value->lists as $lists)
-                        <span class="badge bg-primary">{{$lists->name}}</span>
+                        <span class="badge  badge-info">{{$lists->name}}</span>
                     @endforeach
                 </td>
                 <td>
@@ -88,7 +88,9 @@
       <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Create New Filter</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
         </div>
           <form method="post" id="list" action="{{url(config('dynamic-extract.prefix').'/report/config/filtro/filtros/new/store')}}">
           @csrf

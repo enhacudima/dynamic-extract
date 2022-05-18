@@ -34,8 +34,9 @@ class AuthController extends Controller
         if($user){
             $token = (string) Str::uuid();
             $minutes = 120;
+            $cookie_user = cookie('access_user', $user, $minutes);
             $cookie = cookie('access_user_token', $token, $minutes);
-            return redirect($this->prefix.'/report/new')->withCookie($cookie);
+            return redirect($this->prefix.'/report/new')->withCookies([$cookie,$cookie_user]);
         }
         // Redirect to homepage
         return redirect($this->prefix);

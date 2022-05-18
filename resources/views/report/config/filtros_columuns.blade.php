@@ -55,7 +55,7 @@
                 <td>{{$value->id}}</td>
                 <td>{{$value->name}}</td>
                 <td>
-                    <span class="badge bg-primary">{{$value->filtro->name}}</span>
+                    <span class="badge  badge-info">{{$value->filtro->name}}</span>
                 </td>
                 <td>
                       <a class="btn btn-success btn-sm" aria-hidden="true" href="{{url(config('dynamic-extract.prefix').'/report/config/filtro/columuns/edit',$value->id)}}" ><i class="fas fa-edit"></i> </a>
@@ -79,7 +79,9 @@
       <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Create New Columun</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
         </div>
           <form method="post" id="list" action="{{url(config('dynamic-extract.prefix').'/report/config/filtro/columuns/store')}}">
           @csrf
