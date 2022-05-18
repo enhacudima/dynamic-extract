@@ -25,7 +25,7 @@
 </div>
  <div class="col-md-9">
 
- <div class="card card-solid card-default">
+ <div class="card border-dark">
    <div class="card-header">
               <center><h5 class="card-title"><strong><i class="fa fa-fw fa-folder-open"></i> Filter Columuns </strong></h5></center>
 

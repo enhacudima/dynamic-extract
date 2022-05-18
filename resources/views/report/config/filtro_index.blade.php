@@ -24,7 +24,7 @@
 </div>
  <div class="col-md-9">
 
- <div class="card">
+ <div class="card border-dark">
    <div class="card-header">
               <center><h5 class="card-title"><strong><i class="fa fa-fw fa-folder-open"></i> Group Filter </strong></h5></center>
 

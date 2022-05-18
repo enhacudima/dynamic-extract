@@ -22,7 +22,9 @@
     <a href="{{url(config('dynamic-extract.prefix').'/report/config/filtro/columuns')}}" class="list-group-item list-group-item-action">Filter Columuns</a>
     </div>
 </div>
- <div class="card col-md-9">
+
+ <div class="col-md-9">
+ <div class="card border-dark">
    <div class="card-header">
               <center><h5 class="card-title"><strong><i class="fa fa-fw fa-folder-open"></i> Configuration </strong></h5></center>
 
@@ -78,6 +80,7 @@
         </tbody>
     </table>
   </div>
+</div>
 </div>
 </div>
 </div>

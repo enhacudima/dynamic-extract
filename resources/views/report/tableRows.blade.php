@@ -8,9 +8,9 @@
 
 @section('content')
 
- <div class="card card-solid card-default">
+ <div class="card border-dark">
    <div class="card-header">
-              <center><h5 class="card-title"><strong><i class="fa fa-fw fa-folder-open"></i> PreView data (Max: {{config('dynamic-extract.preview_limit')}}) </strong></h5></center>
+              <center><h5 class="card-title"><strong><i class="fa fa-fw fa-folder-open"></i> PreView data </strong></h5></center>
 
     </div>
     <div class="panel-body">
@@ -40,6 +40,11 @@
             @endif
         </tbody>
     </table>
+      <footer class="blockquote-footer">
+        <small>
+          Preview data will show <cite title="Source Title">(Max: {{config('dynamic-extract.preview_limit')}})</cite>
+        </small>
+      </footer>
   </div>
 </div>
 @stop

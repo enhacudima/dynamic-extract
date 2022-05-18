@@ -91,7 +91,7 @@
                         <button type="submit" class="btn btn-dark">{!!$process_icon!!} </button>
                     </span>
                     </form>
-                <div class="text-end">
+                <div class="text-right">
                     @if(isset($report->filtro))
                         <a href="{{url(config('dynamic-extract.prefix').'/report/config/filtro/edit',$report->filtro_r->id)}}" class="btn btn-tool"><i class="fas fa-filter"></i></a>
                     @endif
