@@ -95,9 +95,15 @@ class ExtractControllerReport extends Controller
                 $query->where('report_new_favorites.user_id', $this->user_id);
 
             }])
-            ->where('status',1)->orderby('name','asc')->orderby('name')->paginate(8);
+            ->where('status',1)->orderby('name','asc')->orderby('name')->paginate(12);
 
-        $data_favorite=ReportFavorites::with('report')->orderby('updated_at','desc')->where('user_id',$this->user_id)->paginate(12);
+
+        if(Auth::check()){
+            $user_id = Auth::id();
+        }else{
+            $user_id = $this->user_id;
+        }
+        $data_favorite=ReportFavorites::with('report')->orderby('updated_at','desc')->where('user_id',$user_id)->get();
         return view('extract-view::report.new', compact('data','data_favorite'));
     }
 
