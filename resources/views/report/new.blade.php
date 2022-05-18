@@ -18,7 +18,7 @@
                             <div class="text-end">
                                 <a href="{{url(config('dynamic-extract.prefix').'/report/config/open',[$favorite->report->id,'table'])}}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                                 <a href="{{url(config('dynamic-extract.prefix').'/report/config/open',[$favorite->report->id,'excel'])}}" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i></a>
-                                <a href="{{url(config('dynamic-extract.prefix').'/report/config/favorite/remove',$favorite->report->id)}}" class="btn btn-primary btn-sm"><i class="fas fa-minus"></i></a>
+                                <a href="{{url(config('dynamic-extract.prefix').'/report/config/favorite/remove',$favorite->id)}}" class="btn btn-primary btn-sm"><i class="fas fa-minus"></i></a>
                             </div>
                         </div>
                         </div>

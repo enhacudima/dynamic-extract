@@ -34,7 +34,6 @@ class ExtractControllerReport extends Controller
             if(config('dynamic-extract.middleware.permission.active')){
                 $this->middleware('can:'.config('dynamic-extract.middleware.extract'));
             }
-            $this->user_id = Auth::user()->id;
             $this->user_model = config('dynamic-extract.middleware.model');
 
         }else{
@@ -221,16 +220,20 @@ class ExtractControllerReport extends Controller
     $report=ReportNew::where('id',$id)->where('status',1)->first();
     if(!isset($report)){
         return back()->with('error','This report is no longer available');
+    };
+    if(Auth::check()){
+        $user_id = Auth::id();
+    }else{
+        $user_id = $this->user_id;
     }
-
-    ReportFavorites::Favorite($this->user_id, $this->user_model, $id);
+    ReportFavorites::Favorite($user_id, $this->user_model, $id);
     return back()->with('success',"{$report->name} added to favorites");
 
   }
 
   public function favorite_remove($id)
   {
-    ReportFavorites::where('report_id',$id)->delete();
+    ReportFavorites::where('id',$id)->delete();
     return back()->with('success',"Removed from favorites");
 
   }
