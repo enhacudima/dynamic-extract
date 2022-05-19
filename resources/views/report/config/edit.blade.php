@@ -9,7 +9,7 @@
 
 @section('content')
 
- <div class="card card-solid card-default">
+ <div class="card border-dark">
    <div class="card-header">
               <center><h5 class="card-title"><strong><i class="fa fa-fw fa-folder-open"></i> Report Edit </strong></h5></center>
 
@@ -27,22 +27,7 @@
                 <label for="exampleFormControlInput1" class="form-label">Comments</label>
                 <input type="text" name="comments" required autofocus="" class="form-control" placeholder="Comments" value="{{$data->comments}}"><br>
                 <label for="exampleFormControlInput1" class="form-label">Permissions</label>
-                <select name="can" required="" autofocus="" class="form-control">
-                  <option value="{{$data->can}}"  selected="">{{$data->can}}</option>
-                  @if(config('dynamic-extract.permissions'))
-                    @foreach(config('dynamic-extract.permissions') as $permission)
-                        @if(config('dynamic-extract.auth'))
-                            @if(Auth::user()->can($permission))
-                            <option value="{{$permission}}">{{$permission}}</option>
-                            @else
-                            <option value="{{$permission}}">{{$permission}}</option>
-                            @endif
-                        @else
-                            <option value="{{$permission}}">{{$permission}}</option>
-                        @endif
-                    @endforeach
-                  @endif
-                </select><br>
+                <input type="text" name="can" required autofocus="" class="form-control" placeholder="Type a permission"  value="{{$data->can}}"><br>
                 <label for="exampleFormControlInput1" class="form-label">Filter</label>
                 <select name="filtro" autofocus="" class="form-control">
                   @if(isset($data->filtro_r->id))
