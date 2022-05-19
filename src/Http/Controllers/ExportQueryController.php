@@ -155,13 +155,7 @@ class ExportQueryController extends Controller
         foreach ($report->sync_filtros as $key => $filtro) {
             if($filtro->filtros->type=='user'){
                 $columun = $filtro->filtros->value;
-                $data->where(function ($q) use ($columun, $key){
-                    if($key == 0){
-                        $q->where($columun,$this->user_id);
-                    }else{
-                        $q->orWhere($columun,$this->user_id);
-                    }
-                });
+                $data->where($columun,$this->user_id);
             }
 
         }
