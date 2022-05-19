@@ -10,7 +10,6 @@
     <div class="row">
         @if(!$data_favorite->isEmpty())
             @foreach($data_favorite as $favorite)
-                @if(config('dynamic-extract.auth') ? Auth::user()->can($favorite->report->can) : true)
                     <div class="col-sm-3 ">
                         <div class="card text-white bg-info mb-3">
                         <div class="card-body">
@@ -23,7 +22,6 @@
                         </div>
                         </div>
                     </div>
-                @endif
             @endforeach
 
         @else
@@ -53,7 +51,6 @@
 
         @if(!$data->isEmpty())
             @foreach($data as $report)
-                @if(config('dynamic-extract.auth') ? Auth::user()->can($report->can) : true)
                 <div class="col-sm-3 ">
                     <div class="card text-white bg-secondary mb-3">
                     <div class="card-header" style="height: 4rem;">{{$report->name}}</div>
@@ -70,7 +67,6 @@
                 </div>
 
                 </div>
-                @endif
             @endforeach
 
             <div class="w-100"></div>

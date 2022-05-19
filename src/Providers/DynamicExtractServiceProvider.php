@@ -12,6 +12,9 @@ use Enhacudima\DynamicExtract\Console\Commands\AccessListCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 class DynamicExtractServiceProvider extends ServiceProvider
 {
     /**
@@ -55,6 +58,15 @@ class DynamicExtractServiceProvider extends ServiceProvider
                 AccessRevokeCommand::class,
                 AccessListCommand::class,
             ]);
+        }
+        if (!Collection::hasMacro('paginate')) {
+            Collection::macro('paginate', 
+                function ($perPage = 15, $page = null, $options = []) {
+                $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+                return (new LengthAwarePaginator(
+                    $this->forPage($page, $perPage), $this->count(), $perPage, $page, $options))
+                    ->withPath('');
+            });
         }
         Paginator::useBootstrap();
         Schema::defaultStringLength(191);

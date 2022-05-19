@@ -17,6 +17,7 @@ use File;
 use Storage;
 use Enhacudima\DynamicExtract\Http\Controllers\ExportQueryController;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Collection;
 
 
 class ExtractControllerReport extends Controller
@@ -92,16 +93,32 @@ class ExtractControllerReport extends Controller
     {
 
         $user_id =$this->user_inf();
-        $data=ReportNew::with(['favorite' => function($query) use ($user_id)
+        $data_in=ReportNew::with(['favorite' => function($query) use ($user_id)
             {
                 $query->where('report_new_favorites.user_id', $user_id);
 
             }])
-            ->where('status',1)->orderby('name','asc')->orderby('name')->paginate(12);
+            ->where('status',1)->orderby('name','asc')->orderby('name')->get();
+            //dd($data_in);
+        $data = $this->convert($data_in)->paginate(12);
+        //dd($data);
 
+        $data_favorite_in=ReportFavorites::with('report')->orderby('updated_at','desc')->where('user_id',$user_id)->get();
+        $data_favorite = $this->convert($data_favorite_in);
 
-        $data_favorite=ReportFavorites::with('report')->orderby('updated_at','desc')->where('user_id',$user_id)->get();
         return view('extract-view::report.new', compact('data','data_favorite'));
+    }
+
+    public function convert($data){
+        $temp =new Collection();
+        foreach ($data as $key => $report) {
+            if(config('dynamic-extract.auth') ? Auth::user()->can($report->can) : true){
+                //array_push($temp,$report);
+                $temp->push((object) $report);
+            }
+        }
+
+        return $temp;
     }
 
 
@@ -242,7 +259,7 @@ class ExtractControllerReport extends Controller
   {
         $user_id = $this->user_inf();
 
-        $data=ReportNew::with(['favorite' => function($query) use ($user_id)
+        $data_in=ReportNew::with(['favorite' => function($query) use ($user_id)
             {
                 $query->where('report_new_favorites.user_id', $user_id);
 
@@ -250,7 +267,9 @@ class ExtractControllerReport extends Controller
             ->where('name', 'like', "%{$request->search}%")
             ->where('status',1)->orderby('name','asc')
             ->orderby('name')
-            ->paginate(12);
+            ->get();
+
+        $data = $this->convert($data_in)->paginate(16);
 
         return view('extract-view::report.search', compact('data'));
 
