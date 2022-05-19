@@ -88,7 +88,7 @@
       <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Create New Filter</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -111,6 +111,7 @@
                   <option value="columuns">columuns</option>
                   <option value="<=">less than "<="</option>
                   <option value=">=">greater than ">="</option>
+                  <option value="user">user</option>
                 </select>
                 <div class="flexCheckLists" id="flexCheckLists" style="display: none;">
                     <div class="form-group">

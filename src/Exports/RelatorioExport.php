@@ -23,10 +23,10 @@ class RelatorioExport implements FromQuery, ShouldAutoSize, WithHeadings, WithEv
     */
     public static $filename;
 
-    public function __construct($filename,$start,$end,$type,$filtro,$request)
+    public function __construct($filename,$start,$end,$type,$filtro,$request,$user_id)
     {
         RelatorioExport::$filename = $filename;
-        $this->q = new ExportQueryController($start,$end,$type,$filtro,$request);
+        $this->q = new ExportQueryController($start,$end,$type,$filtro,$request,$user_id);
     }
     public function headings(): array
     {

@@ -91,12 +91,7 @@ class ExtractControllerReport extends Controller
     public function new ()
     {
 
-        if(Auth::check()){
-            $user_id = Auth::id();
-        }else{
-            $user_id = $this->user_id;
-        }
-
+        $user_id =$this->user_inf();
         $data=ReportNew::with(['favorite' => function($query) use ($user_id)
             {
                 $query->where('report_new_favorites.user_id', $user_id);
@@ -136,7 +131,7 @@ class ExtractControllerReport extends Controller
         $end=date('Y-m-d');
         $end=Carbon::parse($end)->endOfDay();
         $start=date('Y-m-01');
-        $end=Carbon::parse($start)->startOfDay();
+        $start=Carbon::parse($start)->startOfDay();
 
         if (isset($request->start)) {
               $request->validate([
@@ -153,7 +148,7 @@ class ExtractControllerReport extends Controller
 
           $type=$request->type;
           $filtro=$request->filtro;
-        $q = new ExportQueryController($start,$end,$type,$filtro,$request->all());
+        $q = new ExportQueryController($start,$end,$type,$filtro,$request->all(),$this->user_inf());
         $eq=$q->query();
         $heading = $eq['heading'];
         $data = $eq['data'];
@@ -163,10 +158,10 @@ class ExtractControllerReport extends Controller
     }
     public function filtro(Request $request)
     {
-        $start=date('Y-m-01');
         $end=date('Y-m-d');
-
         $end=Carbon::parse($end)->endOfDay();
+        $start=date('Y-m-01');
+        $start=Carbon::parse($start)->startOfDay();
 
         if (isset($request->start)) {
             $request->validate([
@@ -191,14 +186,14 @@ class ExtractControllerReport extends Controller
         $data=[];
         $data['filename']=$filename;
         $data['path']=config('dynamic-extract.prefix').'/';
-        $data['user_id']=Auth::user()->id ?? 0;
+        $data['user_id']=$this->user_inf();
         $data['can']=$request->can;
         $data['filterData']=$filterData;
         $processed=ProcessedFiles::create($data);
 
         if(!config('dynamic-extract.queue')){
             try{
-                Excel::store(new RelatorioExport($filename,$start,$end,$type,$filtro,$request->all()), $path);
+                Excel::store(new RelatorioExport($filename,$start,$end,$type,$filtro,$request->all(),$this->user_inf()), $path);
             }catch (Throwable $e) {
                 return back()->with('error','Error: '.$e->getMessage());
             }
@@ -206,11 +201,11 @@ class ExtractControllerReport extends Controller
             try{
 
                 if(config('dynamic-extract.auth')){
-                    (new RelatorioExport($filename,$start,$end,$type,$filtro,$request->all()))->queue($path)->chain([
+                    (new RelatorioExport($filename,$start,$end,$type,$filtro,$request->all(),$this->user_inf()))->queue($path)->chain([
                         new NotifyUserOfCompletedExport(request()->user(),$filename),
                     ]);
                 }else{
-                    (new RelatorioExport($filename,$start,$end,$type,$filtro,$request->all()))->queue($path);
+                    (new RelatorioExport($filename,$start,$end,$type,$filtro,$request->all(),$this->user_inf()))->queue($path);
                 }
 
             }catch (Exception $e) {
@@ -231,12 +226,7 @@ class ExtractControllerReport extends Controller
     if(!isset($report)){
         return back()->with('error','This report is no longer available');
     };
-    if(Auth::check()){
-        $user_id = Auth::id();
-    }else{
-        $user_id = $this->user_id;
-    }
-    ReportFavorites::Favorite($user_id, $this->user_model, $id);
+    ReportFavorites::Favorite($this->user_inf(), $this->user_model, $id);
     return back()->with('success',"{$report->name} added to favorites");
 
   }
@@ -250,12 +240,7 @@ class ExtractControllerReport extends Controller
 
   public function search_reports(Request $request)
   {
-
-        if(Auth::check()){
-            $user_id = Auth::id();
-        }else{
-            $user_id = $this->user_id;
-        }
+        $user_id = $this->user_inf();
 
         $data=ReportNew::with(['favorite' => function($query) use ($user_id)
             {
@@ -269,6 +254,18 @@ class ExtractControllerReport extends Controller
 
         return view('extract-view::report.search', compact('data'));
 
+  }
+
+  public function user_inf()
+  {
+
+        if(Auth::check()){
+            $user_id = Auth::id();
+        }else{
+            $user_id = $this->user_id;
+        }
+
+        return $user_id;
   }
 
 

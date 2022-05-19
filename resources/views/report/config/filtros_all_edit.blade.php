@@ -37,6 +37,7 @@
                   <option value="columuns">columuns</option>
                   <option value="<=">less than "<="</option>
                   <option value=">=">greater than ">="</option>
+                  <option value="user">user</option>
                 </select>
                 <br>
                 <div class="flexCheckLists" id="flexCheckLists"

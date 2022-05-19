@@ -17,14 +17,16 @@ class ExportQueryController extends Controller
     public $type;
     public $filtro;
     public $request;
+    public $user_id;
 
-    public function __construct($start,$end,$type,$filtro,$request)
+    public function __construct($start,$end,$type,$filtro,$request,$user_id)
     {
         $this->start=$start;
         $this->end=$end;
         $this->type=$type;
         $this->filtro=$filtro;
         $this->request=$request;
+        $this->user_id=$user_id;
         $this->heading=$this->select_columuns_head($this->request);
     }
 
@@ -42,8 +44,9 @@ class ExportQueryController extends Controller
                 $data=DB::connection(config('dynamic-extract.db_connection'))->table($this->type)->orderby($this->heading[0] ?? 'id', 'desc');
                 if($this->filtro){
                     $data->whereBetween($this->filtro,[$this->start,$this->end])->orderBy($this->filtro,'desc');
-                }
-
+                } 
+                
+                $this->filter_user_id($data,$this->request);
                 $this->filter_string($data,$this->request);
                 $this->select_columuns($data,$this->request);
                 $this->filter_select($data,$this->request);
@@ -144,6 +147,24 @@ class ExportQueryController extends Controller
             }
         }
 
+        return $data;
+    }
+
+    public function filter_user_id($data,$request){
+        $report=ReportNew::find($request['report_id']);
+        foreach ($report->sync_filtros as $key => $filtro) {
+            if($filtro->filtros->type=='user'){
+                $columun = $filtro->filtros->value;
+                $data->where(function ($q) use ($columun, $key){
+                    if($key == 0){
+                        $q->where($columun,$this->user_id);
+                    }else{
+                        $q->orWhere($columun,$this->user_id);
+                    }
+                });
+            }
+
+        }
         return $data;
     }
 
