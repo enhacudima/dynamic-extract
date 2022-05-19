@@ -90,19 +90,21 @@ class ExtractControllerReport extends Controller
 
     public function new ()
     {
-        $data=ReportNew::with(['favorite' => function($query)
-            {
-                $query->where('report_new_favorites.user_id', $this->user_id);
-
-            }])
-            ->where('status',1)->orderby('name','asc')->orderby('name')->paginate(12);
-
 
         if(Auth::check()){
             $user_id = Auth::id();
         }else{
             $user_id = $this->user_id;
         }
+
+        $data=ReportNew::with(['favorite' => function($query) use ($user_id)
+            {
+                $query->where('report_new_favorites.user_id', $user_id);
+
+            }])
+            ->where('status',1)->orderby('name','asc')->orderby('name')->paginate(12);
+
+
         $data_favorite=ReportFavorites::with('report')->orderby('updated_at','desc')->where('user_id',$user_id)->get();
         return view('extract-view::report.new', compact('data','data_favorite'));
     }
@@ -161,20 +163,22 @@ class ExtractControllerReport extends Controller
     }
     public function filtro(Request $request)
     {
-        $end=date('Y-m-d');
         $start=date('Y-m-01');
+        $end=date('Y-m-d');
+
+        $end=Carbon::parse($end)->endOfDay();
 
         if (isset($request->start)) {
-              $request->validate([
-                  'start'=>'required|date',
-              ]);
-              $start=Carbon::parse($request->start);
+            $request->validate([
+                'start'=>'required|date',
+            ]);
+            $start=Carbon::parse($request->start);
         }
         if (isset($request->end)) {
               $request->validate([
                   'end'=>'required|date'
               ]);
-          $end=Carbon::parse($request->end)->endOfDay();
+            $end=Carbon::parse($request->end)->endOfDay();
         }
 
           $type=$request->type;
@@ -241,6 +245,29 @@ class ExtractControllerReport extends Controller
   {
     ReportFavorites::where('id',$id)->delete();
     return back()->with('success',"Removed from favorites");
+
+  }
+
+  public function search_reports(Request $request)
+  {
+
+        if(Auth::check()){
+            $user_id = Auth::id();
+        }else{
+            $user_id = $this->user_id;
+        }
+
+        $data=ReportNew::with(['favorite' => function($query) use ($user_id)
+            {
+                $query->where('report_new_favorites.user_id', $user_id);
+
+            }])
+            ->where('name', 'like', "%{$request->search}%")
+            ->where('status',1)->orderby('name','asc')
+            ->orderby('name')
+            ->paginate(12);
+
+        return view('extract-view::report.search', compact('data'));
 
   }
 

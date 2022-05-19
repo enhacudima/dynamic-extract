@@ -7,32 +7,6 @@
 @stop
 
 @section('content')
-    <div class="row">
-        @if(!$data_favorite->isEmpty())
-            @foreach($data_favorite as $favorite)
-                @if(config('dynamic-extract.auth') ? Auth::user()->can($favorite->report->can) : true)
-                    <div class="col-sm-3 ">
-                        <div class="card text-white bg-info mb-3">
-                        <div class="card-body">
-                            <p class="card-text" style="height: 3rem;"><small>{{$favorite->report->name}}.</small></p>
-                            <div class="text-right">
-                                <a href="{{url(config('dynamic-extract.prefix').'/report/config/open',[$favorite->report->id,'table'])}}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
-                                <a href="{{url(config('dynamic-extract.prefix').'/report/config/open',[$favorite->report->id,'excel'])}}" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i></a>
-                                <a href="{{url(config('dynamic-extract.prefix').'/report/config/favorite/remove',$favorite->id)}}" class="btn btn-primary btn-sm"><i class="fas fa-minus"></i></a>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                @endif
-            @endforeach
-
-        @else
-            <div class="col-sm-12">
-                <center> No favorite report!!</center>
-            </div>
-        @endif
-    </div>
-    <hr>
     <div class="row mb-3">
         <div class="col-sm-12">
             <center>
@@ -50,7 +24,6 @@
     </div>
 
     <div class="row">
-
         @if(!$data->isEmpty())
             @foreach($data as $report)
                 @if(config('dynamic-extract.auth') ? Auth::user()->can($report->can) : true)
@@ -79,7 +52,7 @@
             </div>
         @else
             <div class="col-sm-12">
-                <center> No data!!</center>
+                <center> No result!!</center>
             </div>
         @endif
     </div>
