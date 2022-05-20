@@ -169,8 +169,9 @@ class ExtractControllerReport extends Controller
         $eq=$q->query();
         $heading = $eq['heading'];
         $data = $eq['data'];
-        $data=$data->take(config('dynamic-extract.preview_limit'))->get();
-        return view('extract-view::report.tableRows',compact('heading','data'));
+        $data = $data->take(config('dynamic-extract.preview_limit'))->get();
+        $report = $request->report_name;
+        return view('extract-view::report.tableRows',compact('report','heading','data'));
 
     }
     public function filtro(Request $request)

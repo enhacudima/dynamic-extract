@@ -10,7 +10,7 @@
 
  <div class="card border-dark">
    <div class="card-header">
-              <center><h5 class="card-title"><strong><i class="fa fa-fw fa-folder-open"></i> PreView data </strong></h5></center>
+              <center><h5 class="card-title"><strong><i class="fa fa-fw fa-folder-open"></i> PreView ({{$report}})</strong></h5></center>
 
     </div>
     <div class="panel-body">
@@ -54,8 +54,8 @@
 $(document).ready(function() {
     $('#example').DataTable( {
             dom: 'Blfrtip',
-            "aLengthMenu": [[25, 50, 75,,100,250,500, -1], [25, 50, 75,100,250,500, "All"]],
-            "iDisplayLength": 25,
+            "aLengthMenu": [[50, 75,100,250,500, -1], [50, 75,100,250,500, "All"]],
+            "iDisplayLength": 50,
             "order": [[0, "desc"]],
             buttons: [
             {
