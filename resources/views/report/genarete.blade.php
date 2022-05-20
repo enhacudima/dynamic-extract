@@ -53,7 +53,7 @@
                         <br>
                         <!-- end date-->
                         <!--other filter-->
-                            @foreach($report->sync_filtros as $filtro)
+                            @foreach($report->sync_filtros as $key => $filtro)
                                 @if($filtro->filtros->type=='<=' or $filtro->filtros->type=='>=')
                                 <div class="">
                                     <input type="hidden" name="comparisonColumun[]" value="{{$filtro->filtros->value}}">
@@ -67,12 +67,12 @@
                                 @if($filtro->filtros->type=='pesquisa')
                                 <div class="">
                                     <input type="hidden" name="pesquisaColumun[]" value="{{$filtro->filtros->value}}">
-                                    <div for="pesquisaValue[]" class="form-group">
+                                    <div for="pesquisaValue{$key}" class="form-group">
                                         <label>{{$filtro->filtros->name}}</label>
                                         <div class="input-group"  >
-                                            <input class="form-control form-control-sm" type="text" name="pesquisaValue[]" placeholder="{{$filtro->filtros->name}} ..">
+                                            <input class="form-control form-control-sm" id="pesquisaValue{$key}" type="text" name="pesquisaValue[]" placeholder="{{$filtro->filtros->name}} ..">
                                             <div class="input-group-append">
-                                                <button type="submit" class="btn btn-outline-secondary"><i class="fas fa-search"></i></button>
+                                                <span class="input-group-text" id="pesquisaValue{$key}"><i class="fas fa-search"></i></span>
                                             </div>
                                         </div>
                                     </div>
