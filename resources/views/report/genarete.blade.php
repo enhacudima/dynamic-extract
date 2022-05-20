@@ -62,7 +62,7 @@
                                         <label for="comparisonValue[]">{{$filtro->filtros->name}}</label>
                                         <input class="form-control form-control-sm" type="text" name="comparisonValue[]"  placeholder="{{$filtro->filtros->name}}">
                                     </div>
-                                </div><br>
+                                </div>
                                 @endif
                                 @if($filtro->filtros->type=='pesquisa')
                                 <div class="">
@@ -76,15 +76,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div><br>
-                                @endif
-                                @if($filtro->filtros->type=='group')
-                                <div class="">
-                                    <input type="hidden" name="groupColumun[]" value="{{$filtro->filtros->value}}">
                                 </div>
                                 @endif
+                                @if($filtro->filtros->type=='group')
+                                    <input type="hidden" name="groupColumun[]" value="{{$filtro->filtros->value}}">
+                                @endif
                                 @if($filtro->filtros->type=='list')
-                                <div class="">
+                                <div class="form-group">
                                     <input type="hidden" name="listColumun[]" value="{{$filtro->filtros->value}}">
                                     <select class="form-control form-control-sm" name="listValue[]">
                                         <option value="no_filter" selected="" >Select {{$filtro->filtros->name}} ..</option>
@@ -93,7 +91,7 @@
                                         @endforeach
                                     </select>
 
-                                </div><br>
+                                </div>
                                 @endif
                             @endforeach
                         <!--end other filter-->
