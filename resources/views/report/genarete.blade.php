@@ -50,7 +50,6 @@
                                 </div>
                             </div>
                         </div>
-                        <br>
                         <!-- end date-->
                         <!--other filter-->
                             @foreach($report->sync_filtros as $key => $filtro)
