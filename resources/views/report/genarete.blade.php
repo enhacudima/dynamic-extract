@@ -69,7 +69,12 @@
                                     <input type="hidden" name="pesquisaColumun[]" value="{{$filtro->filtros->value}}">
                                     <div for="pesquisaValue[]" class="form-group">
                                         <label>{{$filtro->filtros->name}}</label>
-                                        <input class="form-control form-control-sm" type="text" name="pesquisaValue[]" placeholder="{{$filtro->filtros->name}}">
+                                        <div class="input-group"  >
+                                            <input class="form-control form-control-sm" type="text" name="pesquisaValue[]" placeholder="{{$filtro->filtros->name}} ..">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-outline-secondary"><i class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div><br>
                                 @endif
