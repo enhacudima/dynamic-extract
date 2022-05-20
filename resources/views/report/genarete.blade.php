@@ -60,7 +60,7 @@
                                     <input type="hidden" name="typeColumun[]" value="{{$filtro->filtros->type}}">
                                     <div class="form-group">
                                         <label for="comparisonValue[]">{{$filtro->filtros->name}}</label>
-                                        <input class="form-control form-control-sm" type="text" name="comparisonValue[]" value="Sem filtro" placeholder="{{$filtro->filtros->name}}">
+                                        <input class="form-control form-control-sm" type="text" name="comparisonValue[]"  placeholder="{{$filtro->filtros->name}}">
                                     </div>
                                 </div><br>
                                 @endif
@@ -69,7 +69,7 @@
                                     <input type="hidden" name="pesquisaColumun[]" value="{{$filtro->filtros->value}}">
                                     <div for="pesquisaValue[]" class="form-group">
                                         <label>{{$filtro->filtros->name}}</label>
-                                        <input class="form-control form-control-sm" type="text" name="pesquisaValue[]" value="Sem filtro" placeholder="{{$filtro->filtros->name}}">
+                                        <input class="form-control form-control-sm" type="text" name="pesquisaValue[]" placeholder="{{$filtro->filtros->name}}">
                                     </div>
                                 </div><br>
                                 @endif
