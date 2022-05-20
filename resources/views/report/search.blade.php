@@ -33,7 +33,7 @@
                         <p class="card-text" style="height: 3rem;"><small>{{$report->comments}}.</small></p>
                         <div class="text-right">
                             <a href="{{url(config('dynamic-extract.prefix').'/report/config/open',[$report->id,'table'])}}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
-                            <a href="{{url(config('dynamic-extract.prefix').'/report/config/open',[$report->id,'excel'])}}" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i></a>
+                            <a href="{{url(config('dynamic-extract.prefix').'/report/config/open',[$report->id,'excel'])}}" class="btn btn-primary btn-sm"><i class="fas fa-download"></i></a>
                             @if(!($report->favorite))
                                 <a href="{{url(config('dynamic-extract.prefix').'/report/config/favorite',$report->id)}}" class="btn btn-primary btn-sm"><i class="fas fa-thumbtack"></i></a>
                             @endif

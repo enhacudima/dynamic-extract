@@ -10,7 +10,7 @@
 
 @section('content')
 
- <div class="card">
+ <div class="card border-dark">
    <div class="card-header border-0">
     <div class="d-flex justify-content-between">
               <center><h5 class="card-title"><strong><i class="fa fa-fw fa-bookmark"></i> Files </strong></h5></center>
