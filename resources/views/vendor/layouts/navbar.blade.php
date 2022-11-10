@@ -10,13 +10,13 @@
     <div class="collapse navbar-collapse " id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{url(config('dynamic-extract.prefix').'/report/index')}}"><i class="far fa-file-excel"></i> Files</a>
+          <a class="nav-link" aria-current="page" href="{{url(config('dynamic-extract.prefix').'/report/index')}}"><i class="fas fa-download"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{url(config('dynamic-extract.prefix').'/report/new')}}"><i class="fas fa-database"></i> Generate</a>
+          <a class="nav-link" href="{{url(config('dynamic-extract.prefix').'/report/new')}}"><i class="fas fa-list"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{url(config('dynamic-extract.prefix').'/report/config')}}"><i class="fa  fa-cog"></i> Configuration</a>
+          <a class="nav-link" href="{{url(config('dynamic-extract.prefix').'/report/config')}}"><i class="fa  fa-cog"></i></a>
         </li>
       </ul>
     </div>
@@ -24,9 +24,15 @@
             <li class="nav-item">
                 <a   class="nav-link text-muted" href="https://github.com/enhacudima" target="_blank"><i class="fab fa-github"></i></a>
             </li>
+             <li class="nav-item">
+                <a   class="nav-link text-muted" href="{{url(config('dynamic-extract.my_home_page'))}}" target="_blank"><i class="fas fa-home"></i></a>
+            </li>
             @if(config('dynamic-extract.auth'))
                 <li class="nav-item">
-                    <a   class="nav-link text-muted" href="{{url(config('dynamic-extract.sign_out'))}}" ><i class="fas fa-sign-out-alt"></i></a>
+                    <form method="POST" action="{{url(config('dynamic-extract.sign_out'))}}" >
+                            @csrf
+                        <button type="submit"  class="btn btn-dark nav-link text-muted"><i class="fas fa-sign-out-alt"></i></button>
+                    </form>
                 </li>
             @else
                 @if(Cookie::get('access_user_token'))
