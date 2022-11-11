@@ -28,12 +28,18 @@
                 <a   class="nav-link text-muted" href="{{url(config('dynamic-extract.my_home_page'))}}" target="_blank"><i class="fas fa-home"></i></a>
             </li>
             @if(config('dynamic-extract.auth'))
-                <li class="nav-item">
-                    <form method="POST" action="{{url(config('dynamic-extract.sign_out'))}}" >
-                            @csrf
-                        <button type="submit"  class="btn btn-dark nav-link text-muted"><i class="fas fa-sign-out-alt"></i></button>
-                    </form>
-                </li>
+                @if (config('dynamic-extract.sign_out_method') == 'post')
+                    <li class="nav-item">
+                        <form method="POST" action="{{url(config('dynamic-extract.sign_out'))}}" >
+                                @csrf
+                            <button type="submit"  class="btn btn-dark nav-link text-muted"><i class="fas fa-sign-out-alt"></i></button>
+                        </form>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a   class="nav-link text-muted" href="{{url(config('dynamic-extract.sign_out'))}}" ><i class="fas fa-sign-out-alt"></i></a>
+                    </li>
+                @endif
             @else
                 @if(Cookie::get('access_user_token'))
                 <li class="nav-item">

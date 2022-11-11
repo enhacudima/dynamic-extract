@@ -1,8 +1,9 @@
 <?php
 
 return [
-   'prefix' => 'dynamic-extract',#prefix your route name and folder name
+    'prefix' => 'dynamic-extract',#prefix your route name and folder name
     'sign_out' => '/logout', #Singout route
+    'sign_out_method' => 'post',
     'my_home_page' => '/', #You home page route
     'auth' => false, #when you set true it require permissions via can
     #middleware permission
