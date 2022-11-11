@@ -191,9 +191,13 @@ class ExportQueryController extends Controller
             }
 
         }
-        $head=DB::connection(config('dynamic-extract.db_connection'))->table($this->type)->select($columuns)->first();
-        $arrrayData=collect($head)->toArray();
-        $heading=array_keys($arrrayData);
-        return $heading;
+        $head = [];
+        $db = DB::connection(config('dynamic-extract.db_connection'))->getPdo();
+        $rs = $db->query("SELECT {$columuns} FROM {$this->type} LIMIT 0");
+        for ($i = 0; $i < $rs->columnCount(); $i++) {
+                $col = $rs->getColumnMeta($i);
+                $head[] = $col['name'];
+        }
+        return $head;
     }
 }
