@@ -3,7 +3,7 @@
 @section('title','Dynamic Extract | Genarete')
 
 @section('content_header')
-    <a class="btn btn-social-icon btn-github"  href="{{ url()->previous() }}"><i class="fa  fa-arrow-left"></i></a>
+    <a class="btn btn-social-icon btn-github"  href="{{ url('report/new') }}"><i class="fa  fa-arrow-left"></i></a>
 @stop
 
 @section('content')
@@ -95,16 +95,26 @@
                             @endforeach
                         <!--end other filter-->
                         @else
-                            <div class="callout callout-info">
-                                <b>Filters</b>
-                                <p>Filters are not available for this report</p>
+                            <div class="callout callout-info text-center">
+                                <b>Filters are not available for this report</b>
                             </div>
                             <input name="filtro" value="no_filter" type="hidden">
                         @endif
                         <hr/>
-                    <span class="input-group-btn">
-                        <button type="submit" class="btn  btn-dark ">{!!$process_icon!!} </button>
-                    </span>
+
+                        @if($process_icon == '<i class="fas fa-download"></i>')
+                        <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary " type="submit">{!!$process_icon!!}</button>
+                        </div>
+                                <select class="form-control " name="file_format" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                                    <option value="xlsx" selected >xlsx</option>
+                                    <option value="csv">csv</option>
+                                </select>
+                        </div>
+                        @else
+                            <button class="btn btn-outline-secondary btn-block" type="submit">{!!$process_icon!!}</button>
+                        @endif
                     </form>
                 <div class="text-right">
                     @if(isset($report->filtro))

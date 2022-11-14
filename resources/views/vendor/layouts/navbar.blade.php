@@ -32,7 +32,7 @@
                     <li class="nav-item">
                         <form method="POST" action="{{url(config('dynamic-extract.sign_out'))}}" >
                                 @csrf
-                            <button type="submit"  class="btn btn-dark nav-link text-muted"><i class="fas fa-sign-out-alt"></i></button>
+                            <button type="submit"  class="btn btn-dark nav-link text-muted">{{auth()->user()->name}} <i class="fas fa-sign-out-alt"></i></button>
                         </form>
                     </li>
                 @else

@@ -136,7 +136,7 @@ class ExtractControllerReport extends Controller
 
         default:
             $process_url ='/report/filtro';
-            $process_icon ='<i class="far fa-file-excel"></i>';
+            $process_icon ='<i class="fas fa-download"></i>';
             break;
     }
 
@@ -197,7 +197,19 @@ class ExtractControllerReport extends Controller
           $type=$request->type;
           $filtro=$request->filtro;
         $new_str = str_replace(' ', '', $request->report_name);
+        //determine file name and format
+        if(isset($request->file_format))
+            switch ($request->file_format) {
+                case 'csv':
+                    $filename=$new_str.'_'.time().'.csv';
+                    break;
+                default:
+                    $filename=$new_str.'_'.time().'.xlsx';
+                    break;
+            }
+        else
         $filename=$new_str.'_'.time().'.xlsx';
+
         $filterData = $request->except(['_token','can','report_id']);
 
         $path = 'public/'.config('dynamic-extract.prefix').'/'.$filename;
@@ -218,7 +230,7 @@ class ExtractControllerReport extends Controller
         }else{
             try{
 
-                if(config('dynamic-extract.auth')){
+                if(config('dynamic-extract.auth') || config('dynamic-extract.queue_notification')){
                     (new RelatorioExport($filename,$start,$end,$type,$filtro,$request->all(),$this->user_inf()))->queue($path)->chain([
                         new NotifyUserOfCompletedExport(request()->user(),$filename),
                     ]);
