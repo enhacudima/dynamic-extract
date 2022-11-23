@@ -10,7 +10,7 @@
     <!-- DataTable -->
     <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.bootstrap5.min.css" rel="stylesheet">
-     <link rel="shortcut icon" href="{{ asset('enhacudima/dynamic-extract/icons/database.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('enhacudima/dynamic-extract/icons/database.png') }}" />
     @yield('css')
     <title>@yield('title')</title>
   </head>
