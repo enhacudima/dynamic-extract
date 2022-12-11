@@ -27,6 +27,8 @@ class NotifyUserOfCompletedExport implements ShouldQueue
         ->update([
             'status' => 0,
         ]);
-        $this->user->notify(new ExportReady($this->filename));
+        if(config('dynamic-extract.queue_notification')){
+            $this->user->notify(new ExportReady($this->filename));
+        }
     }
 }

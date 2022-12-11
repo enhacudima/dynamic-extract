@@ -230,7 +230,7 @@ class ExtractControllerReport extends Controller
         }else{
             try{
 
-                if(config('dynamic-extract.auth') && config('dynamic-extract.queue_notification')){
+                if(config('dynamic-extract.auth')){
                     (new RelatorioExport($filename,$start,$end,$type,$filtro,$request->all(),$this->user_inf()))->queue($path)->chain([
                         new NotifyUserOfCompletedExport(request()->user(),$filename),
                     ]);
