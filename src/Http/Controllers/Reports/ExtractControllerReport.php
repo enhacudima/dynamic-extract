@@ -282,7 +282,7 @@ class ExtractControllerReport extends Controller
             ->orderby('name')
             ->get();
 
-        $data = $this->convert($data_in)->paginate(16);
+        $data = $this->convert($data_in)->paginate(5000);
 
         return view('extract-view::report.search', compact('data'));
 

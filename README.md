@@ -1,115 +1,129 @@
+
 # Dynamic-extract
 
-## About
+Dynamic-extract is a powerful database query extract to Excel and CSV manager for laravel PHP framework with elegant view without additional code.
 
-Dynamic-extract is a powerful database extract (Excel) manager for PHP laravel framework with elegant view (no code at the and user). This include great features such as:
 
-- Powerful, Simple & fast.
-- Robust background job processing (queues).
-- Login session (Laravel Auth or built-in verfication token).
-- Dynamic filters.
-- Notifications.
-- Preview data.
-## Why I need this
-Imagine that you have an application that hosts several tables and you must share reports with several users? This package will help you to manage accesses and perform some of the most complex database tasks on the end user, without him having knowledge of database.
-##  [Demo](https://youtu.be/oQK7-5tglKs)
+## Features
 
-## Filters
-- Data range.
-- Search field.
-- Dropdown field.
-- Group by.
-- Select table columuns.
-- Less than.
-- Greater than. 
+ - Powerful, Simple & fast
+ - Robust background job processing (queues)
+ - Login session (Laravel Auth or built-in verfication token)
+ - Dynamic filters
+- Notifications
+- Preview data
+## Demo
+
+https://youtu.be/oQK7-5tglKs
+
+
+## FAQ
+
+#### Why I need this?
+Imagine that you have an application with a database and you are responsible for creating reports via SQL queries for different users or departments. This package will help you manage access and perform some of the more complex database tasks on the end user, without the end user having database knowledge.
+
+
+
+
 
 ## Requires
-- php ^7.3|^8.0
-- laravel/framework ^8.75 
-- maatwebsite/excel ^3.1
+
+#### Get all items
+
+| Parameter | Verson     | Description                |
+| :-------- | :------- | :------------------------- |
+| `php` | `^7.3 or ^8.0` | **Required**|
+| `laravel/framework` | `^8.75` | **Required**|
+| `maatwebsite/excel` | `^3.1` | **Required**|
 
 
-## Lets Start
 
-- Import
-```` 
-composer require enhacudima/dynamic-extract
-````
-- Installation
-```` 
-php artisan dynamic-extract:install
-````
+
+## Installation
+
+Install with composer
+
+```require
+  composer require enhacudima/dynamic-extract
+```
+
+```Installation
+  php artisan dynamic-extract:install
+```
+    
+## Filter Function
+
+- Date range
+- Search field
+- Dropdown field
+- Group by
+- Select table columuns
+- Less than
+- Greater than
+
+
 ## Commands
 
-- Add new tables to the list
+#### Add new tables to the list
 ```` 
 php artisan dynamic-extract:tables
 ```` 
-- List tables
+#### List tables
 ```` 
 php artisan dynamic-extract:tables-list
 ```` 
-- Add new access 
+#### Add new access 
 ```` 
 php artisan dynamic-extract:access
 ```` 
-- List access
+#### List access
 ```` 
 php artisan dynamic-extract:access-list
 ```` 
-- Revoke access
+#### Revoke access
 ```` 
 php artisan dynamic-extract:access-revoke {email}
 ```` 
-- Delete exported files
+#### Delete exported files
 ```` 
 php artisan dynamic-extract:delete-exported
 ````
 ## Other commands
 You don't need to run the commands on first installation
-- Migration
+#### Migration
 ```` 
 php artisan migrate --path=/vendor/enhacudima/dynamic-extract/src/DataBase/Migration
 ```` 
-- Config
+#### Config
 ````
 php artisan vendor:publish --provider="Enhacudima\DynamicExtract\Providers\DynamicExtractServiceProvider" --tag="config"
 ````
-
 ## Configurations
-
 All configuration well be place on config file at app/config/dynamic-extract.php. after modification please run 
 ````
 php artisan config:cache
 ````
-- Auth
-```` 
-auth:boolean 
-If is true you must implement Laravel Auth 
-```` 
+ 
 
-- Permission
-```` 
-middleware:array 
-Permission list
-```` 
+#### List
 
-- Prefix Route
-```` 
-prefix:string 
-Prefix your route name and extracted folder name
-```` 
+| Parameter | type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `auth` | `boolean` | If is true you must implement Laravel Auth |
+| `prefix` | `array` | Prefix your route name and extracted folder name|
+| `(Permission)- permissions` | `string` | Example: table_view |
+| `(Permission) - middleware` | `array` | Example: web|
+| `permissions` | `array` | Set your permissions based on your application premissions |
 
-- Permissions
-```` 
-permissions:array 
-Set your permissions based on your application premissions
-```` 
+
 
 ## Security Vulnerabilities
-
 If you discover a security vulnerability, please send an e-mail to [kalibredj@outlook.com](mailto:kalibredj@outlook.com). All security vulnerabilities will be promptly addressed.
-
 ## License
 
 licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
+
+

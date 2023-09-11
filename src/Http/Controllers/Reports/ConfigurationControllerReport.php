@@ -128,9 +128,11 @@ class ConfigurationControllerReport extends Controller
       }
       if ($filtro_toV->type=="date") {
         $columun_type=DB::connection(config('dynamic-extract.db_connection'))->getSchemaBuilder()->getColumnType($table->table_name, $filtro_toV->value);
-          if ($columun_type!="datetime") {
-            $msg='Filter: '.$filtro_toV->name.', Columun: '.$filtro_toV->value.' is not DateTime and is not compatible with Table: '.$table->name;
-            return $msg;
+          if ($columun_type != "datetime") {
+            if($columun_type != "date"){
+                $msg='Filter: '.$filtro_toV->name.', Columun: '.$filtro_toV->value.' is not Date format and is not compatible with Table: '.$table->name;
+                return $msg;
+            }
           }
       }
       $date=false;

@@ -34,7 +34,7 @@
     <div class="row mb-3">
         <div class="col-sm-12">
             <center>
-            <form role="form" method="POST" action="{{ url(config('dynamic-extract.prefix'),'search-report')}}" enctype="multipart/form-data" >
+            <form role="form" method="GET" action="{{ url(config('dynamic-extract.prefix'),'search-report')}}" enctype="multipart/form-data" >
                 @csrf
                 <div class="input-group"  style="width: 70%;">
                     <input type="text" name="search" class="form-control" placeholder="Search..">
