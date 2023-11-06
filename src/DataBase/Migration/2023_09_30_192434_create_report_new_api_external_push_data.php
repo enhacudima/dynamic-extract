@@ -22,8 +22,8 @@ class CreateReportNewApiExternalPushData extends Migration
             $table->bigInteger('table_name')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned();
             $table->dateTime('expire_at')->nullable();
-            $table->int('advance_query')->nullable();
-            $table->int('paginate')->nullable();
+            $table->integer('advance_query')->nullable();
+            $table->integer('paginate')->nullable();
             $table->text('text_query')->nullable();
             $table->integer('status')->default(1);
 
