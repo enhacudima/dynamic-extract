@@ -18,7 +18,7 @@ class CreateReportNewTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('comments');
-            $table->bigInteger('table_name')->unsigned();
+            $table->integer('table_name')->unsigned();
             $table->bigInteger('filtro')->nullable();
             $table->string('can');
             $table->integer('status')->default(1);
