@@ -1,5 +1,3 @@
-
-
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
@@ -49,7 +47,16 @@
             toastr.warning("{{ session('warning') }}");
     @endif
 
-
+    @if ($errors->any)
+    toastr.options =
+    {
+        "closeButton" : true,
+        "progressBar" : true
+    }
+    @foreach ($errors->all() as $error)
+        toastr.error("{{ $error }}");
+    @endforeach
+    @endif
 </script>
 
 

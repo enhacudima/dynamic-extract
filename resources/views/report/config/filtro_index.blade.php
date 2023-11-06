@@ -20,6 +20,7 @@
     <a href="{{url(config('dynamic-extract.prefix').'/report/config/filtro/filtros')}}" class="list-group-item list-group-item-action">Filter</a>
     <a href="{{url(config('dynamic-extract.prefix').'/report/config/filtro/list')}}" class="list-group-item list-group-item-action">Filter List</a>
     <a href="{{url(config('dynamic-extract.prefix').'/report/config/filtro/columuns')}}" class="list-group-item list-group-item-action">Filter Columuns</a>
+    <a href="{{url(config('dynamic-extract.prefix').'/report/config/external/api')}}" class="list-group-item list-group-item-action">External API</a>
     </div>
 </div>
  <div class="col-md-9">

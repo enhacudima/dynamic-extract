@@ -49,7 +49,7 @@
                   @endforeach
                 </select><br>
                 <button type="submit" class="btn btn-primary">Save changes</button>
-                <a class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');" href="{{url(config('dynamic-extract.prefix').'/report/config//delete',$data->id)}}">Delete</a>
+                <a class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');" href="{{url(config('dynamic-extract.prefix').'/report/config/delete',$data->id)}}">Delete</a>
           </form>
 
   </div>

@@ -1,9 +1,11 @@
 <?php
 
+use Enhacudima\DynamicExtract\Http\Controllers\AuthController;
 use Enhacudima\DynamicExtract\Http\Controllers\FileDownloadController;
+use Enhacudima\DynamicExtract\Http\Controllers\Reports\API\ExternalPushReport;
+use Enhacudima\DynamicExtract\Http\Controllers\Reports\API\ExternalPushReportConfig;
 use Enhacudima\DynamicExtract\Http\Controllers\Reports\ConfigurationControllerReport;
 use Enhacudima\DynamicExtract\Http\Controllers\Reports\ExtractControllerReport;
-use Enhacudima\DynamicExtract\Http\Controllers\AuthController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +15,20 @@ Route::middleware(['web'])->prefix(config('dynamic-extract.prefix'))->group(func
         Route::get('/', 'welcome');
         Route::get('/sign-in/{user}', 'signIn')->name(config('dynamic-extract.prefix').'/sign-in');
         Route::get('/sign-out', 'logout')->name(config('dynamic-extract.prefix').'/sign-out');
+    });
+
+    Route::controller(ExternalPushReport::class)->group(function () {
+        Route::get('/api/v1/data/{token}', 'index');
+    });
+    Route::controller(ExternalPushReportConfig::class)->group(function () {
+        Route::get('/report/config/external/api', 'index');
+        Route::post('report/config/external/api/store/new','store');
+        Route::get('/report/config/external/api/delete/{id}', 'delete');
+        Route::get('/report/config/external/api/edit/{id}', 'edit');
+        Route::post('/report/config/external/api/store/edit', 'store_edit');
+        Route::get('/report/config/external/api/schedule/{id}','schedule');
+        Route::post('/report/config/external/api/schedule/add', 'schedule_add');
+        Route::get('/report/config/external/api/schedule/delete/{id}','schedule_remove');
     });
 
     Route::controller(ExtractControllerReport::class)->group(function () {
