@@ -61,7 +61,7 @@ class ExternalPushReport extends Controller
             ->with('table')
             ->where('access_link',$uuid)
             ->where('status', 1)
-            ->where('expire_at','<=', $date)
+            ->where('expire_at','>=', $date)
             ->firstOrFail();
 
         $this->checkSchedule($user->id);
