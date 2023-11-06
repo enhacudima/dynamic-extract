@@ -19,7 +19,7 @@ class CreateReportNewApiExternalPushData extends Migration
             $table->string('name');
             $table->softDeletes();
             $table->text('access_link');
-            $table->bigInteger('table_name')->unsigned()->nullable();
+            $table->integer('table_name')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned();
             $table->dateTime('expire_at')->nullable();
             $table->integer('advance_query')->nullable();
@@ -40,4 +40,5 @@ class CreateReportNewApiExternalPushData extends Migration
     {
         Schema::dropIfExists('repor_new_api_external_push_data');
     }
+
 }
