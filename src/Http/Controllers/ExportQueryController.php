@@ -183,10 +183,16 @@ class ExportQueryController extends Controller
         $report=ReportNew::find($request['report_id']);
         foreach ($report->sync_filtros as $key => $filtro) {
             if($filtro->filtros->type=='columuns'){
-                $columuns=[];
+                //$columuns=[];
+                $columuns="";
                 $countColumuns=sizeof($filtro->filtros->columuns);
                 foreach($filtro->filtros->columuns as $key => $columun){
-                    $columuns[$key]=$columun->name;
+                    //$columuns[$key]=$columun->name;
+                    if ($countColumuns == ++$key) {
+                        $columuns .= "{$this->type}.{$columun->name}";
+                    }else {
+                        $columuns .= "{$this->type}.{$columun->name},";
+                    }
                 }
             }
 

@@ -43,7 +43,7 @@
             <th scope="col"><center>Query</center></th>
             <th scope="col"><center>Paginate</center></th>
             <th scope="col">Table</th>
-            <th scope="col"><center>Filter</center></th>
+            <th scope="col"><center>Link</center></th>
             <th scope="col">Actions</th>
             <th scope="col">Create</th>
             <th scope="col">Time</th>
