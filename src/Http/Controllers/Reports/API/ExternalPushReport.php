@@ -11,6 +11,7 @@ use Enhacudima\DynamicExtract\DataBase\Model\ReportNewApiExternalSchedule;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ExternalPushReport extends Controller
 {
@@ -18,14 +19,14 @@ class ExternalPushReport extends Controller
     public $user_id;
     public $user_model;
     public $prefix;
-    public $maxPage = 2;
+    public $maxPage = 1000;
     public function __construct()
     {
         $this->prefix = config('dynamic-extract.prefix');
     }
 
 
-    public function index($uuid)
+    public function index(Request $request, $uuid)
     {
         $table = $this->signIn($uuid);
 
@@ -39,10 +40,11 @@ class ExternalPushReport extends Controller
                     abort(401);
                 }
             if($table->paginate == 1){
-                $data = new Paginator($query, $this->maxPage);
+                $data = $this->arrayPaginator($query, $request);
             }else {
                 $data = $query;
             }
+
         }else {
             $query = DB::connection(config('dynamic-extract.db_connection'))->table($table->table->table_name);
             if ($table->paginate == 1) {
@@ -52,6 +54,26 @@ class ExternalPushReport extends Controller
             }
         }
         return response()->json($data);
+    }
+
+    public function arrayPaginator($array, $request)
+    {
+        $page = $request->query('page') ?? 1;
+        $perPage = $this->maxPage;
+        $offset = ($page * $perPage) - $perPage;
+
+        return new LengthAwarePaginator(
+            array_slice(
+                $array,
+                $offset,
+                $perPage,
+                true
+            ),
+            count($array),
+            $perPage,
+            $page,
+            ['path' => $request->url(), 'query' => $request->query()]
+        );
     }
     public function signIn($uuid)
     {

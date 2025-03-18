@@ -19,7 +19,7 @@ class CreateReportNewApiExternalPushData extends Migration
             $table->string('name');
             $table->softDeletes();
             $table->text('access_link');
-            $table->integer('table_name')->nullable();
+            $table->bigInteger('table_name')->nullable();
             $table->bigInteger('user_id')->unsigned();
             $table->dateTime('expire_at')->nullable();
             $table->integer('advance_query')->nullable();
