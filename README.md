@@ -14,7 +14,7 @@ Dynamic-extract is a powerful database query extract to Excel and CSV manager fo
 - Preview data
 ## Demo
 
-https://youtu.be/oQK7-5tglKs
+[https://www.youtube.com/watch?v=-FekEilPLsM](https://www.youtube.com/watch?v=-FekEilPLsM)
 
 
 ## FAQ
