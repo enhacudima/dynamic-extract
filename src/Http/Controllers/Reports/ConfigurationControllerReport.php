@@ -11,6 +11,7 @@ use Enhacudima\DynamicExtract\DataBase\Model\ReportNewTables;
 use Enhacudima\DynamicExtract\DataBase\Model\ReportNewFiltroGroupo;
 use Enhacudima\DynamicExtract\DataBase\Model\ReportNewColumuns;
 use Enhacudima\DynamicExtract\DataBase\Model\ReportNewLists;
+use Enhacudima\DynamicExtract\Helper\DoctrineHelper;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
@@ -134,6 +135,8 @@ class ConfigurationControllerReport extends Controller
                         old method should remove after update
                         //$columun_type = DB::connection(config('dynamic-extract.db_connection'))->getSchemaBuilder()->getColumnType($table->table_name, $filtro_toV->value);
                         */
+
+                        /*
                         $connection = DB::connection(config('dynamic-extract.db_connection'));
 
                         $schema = $connection->getDoctrineSchemaManager();
@@ -142,8 +145,14 @@ class ConfigurationControllerReport extends Controller
 
                         $columun_type = $columns[$filtro_toV->value]->getType()->getName();
 
+                        */
 
-                        if ($columun_type != "datetime" and $columun_type != "date" ) {
+                        $columun_type = DoctrineHelper::GetColumnType(config('dynamic-extract.db_connection'), $table->table_name, $filtro_toV->value);
+
+
+
+
+                        if ($columun_type != "datetime" and $columun_type != "date" and $columun_type != "timestamp" ) {
                                 $msg = 'Filter: ' . $filtro_toV->name . ', Columun: ' . $filtro_toV->value . ' is not Date format and is not compatible with Table: ' . $table->name;
                                 return $msg;
                         }
