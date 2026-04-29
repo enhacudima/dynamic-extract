@@ -13,7 +13,7 @@
                     <div class="col-sm-3 ">
                         <div class="card text-white bg-info mb-3">
                         <div class="card-body">
-                            <p class="card-text" style="height: 3rem;"><small>{{$favorite->report->name}}.</small></p>
+                            <p class="card-text" style="height: 3rem;"><small>{{$favorite->report->name}}</small></p>
                             <div class="text-right">
                                 <a href="{{url(config('dynamic-extract.prefix').'/report/config/open',[$favorite->report->id,'table'])}}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                                 <a href="{{url(config('dynamic-extract.prefix').'/report/config/open',[$favorite->report->id,'excel'])}}" class="btn btn-primary btn-sm"><i class="fas fa-download"></i></a>
@@ -55,7 +55,7 @@
                     <div class="card text-white bg-secondary mb-3">
                     <div class="card-header" style="height: 4rem;">{{$report->name}}</div>
                     <div class="card-body">
-                        <p class="card-text" style="height: 3rem;"><small>{{$report->comments}}.</small></p>
+                        <p class="card-text" style="height: 3rem;"><small>{{$report->comments}}</small></p>
                         <div class="text-right">
                             <a href="{{url(config('dynamic-extract.prefix').'/report/config/open',[$report->id,'table'])}}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                             <a href="{{url(config('dynamic-extract.prefix').'/report/config/open',[$report->id,'excel'])}}" class="btn btn-primary btn-sm"><i class="fas fa-download"></i></a>

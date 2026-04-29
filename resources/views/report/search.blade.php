@@ -30,7 +30,7 @@
                     <div class="card text-white bg-secondary mb-3">
                     <div class="card-header" style="height: 4rem;">{{$report->name}}</div>
                     <div class="card-body">
-                        <p class="card-text" style="height: 3rem;"><small>{{$report->comments}}.</small></p>
+                        <p class="card-text" style="height: 3rem;"><small>{{$report->comments}}</small></p>
                         <div class="text-right">
                             <a href="{{url(config('dynamic-extract.prefix').'/report/config/open',[$report->id,'table'])}}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                             <a href="{{url(config('dynamic-extract.prefix').'/report/config/open',[$report->id,'excel'])}}" class="btn btn-primary btn-sm"><i class="fas fa-download"></i></a>
