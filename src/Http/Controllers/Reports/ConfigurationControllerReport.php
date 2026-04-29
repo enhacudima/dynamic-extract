@@ -149,6 +149,7 @@ class ConfigurationControllerReport extends Controller
                         }
 
                     } catch (\Throwable $th) {
+                        \Log::error($th);
                         $msg = 'Filter: ' . $filtro_toV->name . ', Columun: ' . $filtro_toV->value . ' is not Date format and is not compatible with Table: ' . $table->name;
                         return $msg;
                     }
