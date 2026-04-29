@@ -18,6 +18,7 @@ class ExportQueryController extends Controller
     public $filtro;
     public $request;
     public $user_id;
+    public $heading;
 
     public function __construct($start,$end,$type,$filtro,$request,$user_id)
     {
@@ -121,7 +122,14 @@ class ExportQueryController extends Controller
         foreach ($pesquisaColumun as $key => $columun) {
             if (isset($pesquisaValue[$key])) {
                 if($pesquisaValue[$key]!="Sem filtro"){
-                    $data->where($columun,'like','%'.$pesquisaValue[$key].'%');
+                    $pesquisaValueArry = explode(',', $pesquisaValue[$key]);
+
+                    $data->where(function ($query) use ($columun, $pesquisaValueArry) {
+                        foreach ($pesquisaValueArry as $value) {
+                            $query->orWhere($columun, 'like', $value . '%');
+                        }
+                    });
+
                 }
             }
         }

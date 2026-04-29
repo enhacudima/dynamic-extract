@@ -10,7 +10,7 @@ use Enhacudima\DynamicExtract\Jobs\Notifications\NotifyUserOfCompletedExport;
 use Enhacudima\DynamicExtract\Exports\RelatorioExport;
 use Enhacudima\DynamicExtract\DataBase\Model\ReportNew;
 use Enhacudima\DynamicExtract\DataBase\Model\ReportFavorites;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 use File;
@@ -99,9 +99,9 @@ class ExtractControllerReport extends Controller
 
             }])
             ->where('status',1)->orderby('name','asc')->orderby('name')->get();
-            //dd($data_in);
+
         $data = $this->convert($data_in)->paginate(12);
-        //dd($data);
+
 
         $data_favorite_in=ReportFavorites::with('report')->orderby('updated_at','desc')->where('user_id',$user_id)->get();
         $data_favorite = $this->convert($data_favorite_in);

@@ -1,6 +1,6 @@
 @extends('extract-view::vendor.layouts.master')
 
-@section('title','Dynamic Extract | Reports')
+@section('title','Dynamic Extract | Report List - Results')
 
 @section('content_header')
     <a class="btn btn-social-icon btn-github"  href="{{ url()->previous() }}"><i class="fa  fa-arrow-left"></i> Reportes</a>

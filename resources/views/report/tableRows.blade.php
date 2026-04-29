@@ -1,6 +1,6 @@
 @extends('extract-view::vendor.layouts.master')
 
-@section('title','Dynamic Extract | Report Table')
+@section('title', 'Dynamic Extract | PreView Report - ' . $report)
 
 @section('content_header')
     <a class="btn btn-social-icon btn-github"  href="{{ url()->previous() }}"><i class="fa  fa-arrow-left"></i></a>
@@ -23,7 +23,7 @@
         <tr>
             @if(isset($heading))
             @foreach($heading as $col)
-            <th scope="col"><center> {{strtoupper(str_replace('_',' ',$col))}}</center></th>
+            <th scope="col"><center> {{strtoupper(str_replace('_', ' ', $col))}}</center></th>
             @endforeach
             @endif
         </tr>

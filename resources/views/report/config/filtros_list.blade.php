@@ -14,7 +14,7 @@
 <div class="col-md-3">
     <div class="list-group">
     <a href="{{url(config('dynamic-extract.prefix').'/report/config')}}" class="list-group-item list-group-item-action" aria-current="true">
-        New Report
+        Report
     </a>
     <a href="{{url(config('dynamic-extract.prefix').'/report/config/filtro')}}" class="list-group-item list-group-item-action">Group Filter</a>
     <a href="{{url(config('dynamic-extract.prefix').'/report/config/filtro/filtros')}}" class="list-group-item list-group-item-action">Filter</a>
