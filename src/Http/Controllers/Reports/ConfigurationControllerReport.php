@@ -143,12 +143,11 @@ class ConfigurationControllerReport extends Controller
                         $columun_type = $columns[$filtro_toV->value]->getType()->getName();
 
 
-                        if ($columun_type != "datetime") {
-                            if ($columun_type != "date") {
+                        if ($columun_type != "datetime" and $columun_type != "date" ) {
                                 $msg = 'Filter: ' . $filtro_toV->name . ', Columun: ' . $filtro_toV->value . ' is not Date format and is not compatible with Table: ' . $table->name;
                                 return $msg;
-                            }
                         }
+
                     } catch (\Throwable $th) {
                         $msg = 'Filter: ' . $filtro_toV->name . ', Columun: ' . $filtro_toV->value . ' is not Date format and is not compatible with Table: ' . $table->name;
                         return $msg;
